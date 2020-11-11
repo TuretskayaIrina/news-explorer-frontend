@@ -1,0 +1,127 @@
+.articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(0,400px));
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  margin: 64px 0;
+}
+
+.article {
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.article__img {
+  width: 100%;
+  height: 272px;
+  object-fit: cover;
+}
+
+.article__icons {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+}
+
+.article__message {
+  font-family: "Roboto", "Arial", sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #000000;
+  border-radius: 10px;
+  background: #fff;
+  padding: 14px 10px;
+  margin: 0 5px 0 0;
+  display: none;
+}
+
+.article__icons:hover .article__message {
+  display: block;
+}
+
+.article__button {
+  background: none;
+  background-image: url('../../images/icon/flag.svg');
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+.article__icons:hover .article__button {
+  background-image: url('../../images/icon/flag-hover.svg');
+}
+
+.article__button:focus  {
+  background-image: url('../../images/icon/flag-save.svg');
+}
+
+.article__about {
+  height: 304px;
+  border-radius: 0 0 15px 15px;
+  background: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.article__about-container {
+  margin: 20px 24px 0 24px;
+}
+
+.article__source-container {
+  margin: 0 24px 24px 24px;
+}
+
+.article__date {
+  font-family: "Source Sans Pro", "Arial", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #B6BCBF;
+  margin: 0 0 12px 0;
+}
+
+.article__name {
+  font-family: "Roboto Slab", "Arial", sans-serif;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1A1B22;
+  margin: 0 0 16px 0;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
+  word-wrap: break-word;
+}
+
+.article__description {
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1A1B22;
+  -webkit-line-clamp: 4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
+  word-wrap: break-word;
+}
+
+.article__source {
+  font-family: "Roboto Slab", "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #B6BCBF;
+  margin: 0;
+}
