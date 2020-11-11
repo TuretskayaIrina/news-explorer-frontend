@@ -3,7 +3,7 @@
   grid-template-columns: repeat(auto-fit,minmax(0,400px));
   grid-column-gap: 16px;
   grid-row-gap: 16px;
-  margin: 64px 0;
+  padding: 64px 0;
 }
 
 .article {
@@ -26,6 +26,16 @@
   top: 24px;
   right: 24px;
   display: flex;
+  justify-content: space-between;
+  width: 352px;
+}
+
+.article__icons-category {
+
+}
+
+.article__icons-message {
+  display: flex;
 }
 
 .article__message {
@@ -41,13 +51,24 @@
   display: none;
 }
 
-.article__icons:hover .article__message {
+.article__category {
+  font-family: "Roboto", "Arial", sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #000000;
+  border-radius: 10px;
+  background: #fff;
+  padding: 14px 10px;
+  margin: 0 5px 0 0;
+}
+
+.article__icons-message:hover .article__message {
   display: block;
 }
 
 .article__button {
   background: none;
-  background-image: url('../../images/icon/flag.svg');
   background-repeat: no-repeat;
   width: 40px;
   height: 40px;
@@ -56,12 +77,24 @@
   cursor: pointer;
 }
 
-.article__icons:hover .article__button {
+.article__button-save {
+  background-image: url('../../images/icon/flag.svg');
+}
+
+.article__icons-message:hover .article__button-save {
   background-image: url('../../images/icon/flag-hover.svg');
 }
 
-.article__button:focus  {
+.article__button-save:focus  {
   background-image: url('../../images/icon/flag-save.svg');
+}
+
+.article__button-delete {
+  background-image: url('../../images/icon/delete.svg');
+}
+
+.article__icons-message:hover .article__button-delete {
+  background-image: url('../../images/icon/delete-hover.svg');
 }
 
 .article__about {

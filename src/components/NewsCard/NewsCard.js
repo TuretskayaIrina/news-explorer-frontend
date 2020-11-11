@@ -12,8 +12,14 @@ function NewsCard() {
           <img alt="растение" className="article__img" src={first} />
 
           <div className="article__icons">
-            <p className="article__message">Войдите, чтобы сохранять статьи</p>
-            <button className="article__button" type="button" />
+            <div className="article__icons-category">
+              {/* <p className="article__category"></p> */}
+            </div>
+
+            <div className="article__icons-message">
+              <p className="article__message">Войдите, чтобы сохранять статьи</p>
+              <button className="article__button article__button-save" type="button" />
+            </div>
           </div>
 
           <div className="article__about">
@@ -36,8 +42,14 @@ function NewsCard() {
           <img alt="растение" className="article__img" src={second} />
 
           <div className="article__icons">
-            <p className="article__message">Войдите, чтобы сохранять статьи</p>
-            <button className="article__button" type="button" />
+            <div className="article__icons-category">
+              {/* <p className="article__category"></p> */}
+            </div>
+
+            <div className="article__icons-message">
+              <p className="article__message">Войдите, чтобы сохранять статьи</p>
+              <button className="article__button article__button-save" type="button" />
+            </div>
           </div>
 
           <div className="article__about">
@@ -57,10 +69,18 @@ function NewsCard() {
 
         <a className="article" href="#" target="_blank" rel="noreferrer">
           <img alt="растение" className="article__img" src={third} />
+
           <div className="article__icons">
-            <p className="article__message">Войдите, чтобы сохранять статьи</p>
-            <button className="article__button" type="button" />
+            <div className="article__icons-category">
+              {/* <p className="article__category"></p> */}
+            </div>
+
+            <div className="article__icons-message">
+              <p className="article__message">Войдите, чтобы сохранять статьи</p>
+              <button className="article__button article__button-save" type="button" />
+            </div>
           </div>
+
           <div className="article__about">
             <div className="article__about-container">
               <p className="article__date">2 августа, 2019</p>
