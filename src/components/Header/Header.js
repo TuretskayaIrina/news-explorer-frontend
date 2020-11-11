@@ -1,12 +1,19 @@
 import './Header.css';
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 
 function Header() {
+
+  const { pathname } = useLocation();
+
+  const headerWhite = `${pathname === '/saved-news' ? 'header_white' : ''}`;
+  const headerLogoBlack = `${pathname === '/saved-news' ? 'header__logo_black' : ''}`;
+
     return(
-      <header className="header">
+      <header className={`header ${headerWhite}`}>
         <div className="header__container">
-          <p className="header__logo">NewsExplorer</p>
+          <Link to="/" className={`header__logo ${headerLogoBlack}`}>NewsExplorer</Link>
           <Navigation />
         </div>
 
