@@ -3,9 +3,10 @@ import React from 'react';
 
 function Preloader() {
     return(
-      <body>
-          <i class="circle-preloader"></i>
-      </body>
+      <section className="preloader">
+          <i class="preloader__circle"></i>
+          <p  class="preloader__message">Идет поиск новостей...</p>
+      </section>
     );
 }
 
