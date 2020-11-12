@@ -30,11 +30,11 @@
 
 .popup__form {
   width: 430px;
-  max-height: 380px;
+  max-height: 457px;
   background: #FFFFFF;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 16px;
-  margin-left: 40.7px;
+  margin-left: 40px;
 }
 
 .popup__title {
@@ -75,13 +75,18 @@
 .popup__input-error {
   font-family: "Roboto", "Arial", sans-serif;
   width: 358px;
-  height: 22px;
+  height: 12px;
   z-index: 1;
   font-size: 12px;
   line-height: 14px;
   color: red;
   display: block;
   margin: 0 auto 5px;
+}
+
+.popup__register-error {
+  text-align: center;
+  margin-bottom: 8px;
 }
 
 .popup__button-save {
@@ -124,6 +129,12 @@
 
 .popup__click {
   color: #2F71E5;
+}
+
+.popup__click:hover {
+  transition: .2s;
+  color: #347EFF;
+  cursor: pointer;
 }
 
 .popup__button-close {

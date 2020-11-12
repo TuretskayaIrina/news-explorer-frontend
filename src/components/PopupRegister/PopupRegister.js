@@ -1,11 +1,12 @@
-import './PopupAuth.css';
+import './PopupRegister.css';
 import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
-function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
+function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
 
   const[ email, setEmail ] = React.useState('');
   const[ password, setPassword ] = React.useState('');
+  const[ name, setName ] = React.useState('');
 
   // обработчик изменения email
   function handleChangeEmail(e) {
@@ -17,11 +18,16 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
     setPassword (e.target.value);
   }
 
-  // обработчик отправки авторизации
+  // обработчик изменения имени
+  function handleChangeName(e) {
+    setName (e.target.value);
+  }
+
+  // обработчик отправки регистрации
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('working');
-    onAuth();
+    console.log('register');
+    onRegister();
   }
 
   return(
@@ -30,10 +36,10 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
     onClose={onClose}
     onClickPopup={onClickPopup}
     onSubmit={handleSubmit}
-    name='popup-auth'
-    title='Вход'
-    buttonText='Сохранить'
-    clickButtonText='Зарегистрироваться'
+    name='popup-register'
+    title='Регистрация'
+    buttonText='Зарегистрироваться'
+    clickButtonText='Войти'
     children={
       <>
         <label className="popup__label">Email</label>
@@ -66,8 +72,24 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
           maxLength="30"
           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
         />
-
         <span id="password-error" className="popup__input-error" />
+
+        <label className="popup__label">Имя</label>
+        <input
+          value={name|| ''}
+          onChange={handleChangeName}
+          id="name"
+          className="popup__input popup__input_name"
+          type="text"
+          name="namelInput"
+          placeholder="Введите своё имя"
+          required
+          minLength="2"
+          maxLength="30"
+        />
+        <span id="name-register-error" className="popup__input-error" >test</span>
+
+        <span id="register-error" className="popup__input-error popup__register-error" >Такой пользователь уже есть</span>
       </>
     }
     />
@@ -76,4 +98,4 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
 }
 
 
-export default PopupAuth;
+export default PopupRegister;
