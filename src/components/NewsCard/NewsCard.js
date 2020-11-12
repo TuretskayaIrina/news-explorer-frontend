@@ -1,10 +1,18 @@
 import './NewsCard.css';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import first from '../../images/cards/image_08.jpg';
 import second from '../../images/cards/image_04.jpg';
 import third from '../../images/cards/image_07.jpg';
 
 function NewsCard() {
+
+  const { pathname } = useLocation();
+
+  const categoryNone = `${pathname === '/' ? 'article__category_none' : ''}`;
+  const articleButtonImg = `${pathname === '/' ? 'article__button-save' : 'article__button-delete'}`;
+  const articleMessage = `${pathname === '/' ? 'Войдите, чтобы сохранять статьи' : 'Убрать из сохранённых'}`;
+
     return(
       <div className="articles" >
 
@@ -13,12 +21,12 @@ function NewsCard() {
 
           <div className="article__icons">
             <div className="article__icons-category">
-              {/* <p className="article__category"></p> */}
+              <p className={`article__category ${categoryNone}`}>Природа</p>
             </div>
 
             <div className="article__icons-message">
-              <p className="article__message">Войдите, чтобы сохранять статьи</p>
-              <button className="article__button article__button-save" type="button" />
+              <p className="article__message">{articleMessage}</p>
+              <button className={`article__button ${articleButtonImg}`} type="button" />
             </div>
           </div>
 
@@ -43,12 +51,12 @@ function NewsCard() {
 
           <div className="article__icons">
             <div className="article__icons-category">
-              {/* <p className="article__category"></p> */}
+              <p className={`article__category ${categoryNone}`}>Природа</p>
             </div>
 
             <div className="article__icons-message">
-              <p className="article__message">Войдите, чтобы сохранять статьи</p>
-              <button className="article__button article__button-save" type="button" />
+              <p className="article__message">{articleMessage}</p>
+              <button className={`article__button ${articleButtonImg}`} type="button" />
             </div>
           </div>
 
@@ -72,12 +80,12 @@ function NewsCard() {
 
           <div className="article__icons">
             <div className="article__icons-category">
-              {/* <p className="article__category"></p> */}
+              <p className={`article__category ${categoryNone}`}>Природа</p>
             </div>
 
             <div className="article__icons-message">
-              <p className="article__message">Войдите, чтобы сохранять статьи</p>
-              <button className="article__button article__button-save" type="button" />
+              <p className="article__message">{articleMessage}</p>
+              <button className={`article__button ${articleButtonImg}`} type="button" />
             </div>
           </div>
 

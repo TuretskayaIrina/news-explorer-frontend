@@ -1,12 +1,19 @@
 import './SavedNews.css'
 import React from 'react';
-
+import { useLocation } from 'react-router-dom';
 import '../NewsCard/NewsCard.css'
 import first from '../../images/cards/image_01.jpg';
 import second from '../../images/cards/image_05.jpg';
 import third from '../../images/cards/image_06.jpg';
 
 function SavedNews() {
+
+  const { pathname } = useLocation();
+
+  const categoryNone = `${pathname === '/' ? 'article__category_none' : ''}`;
+  const articleButtonImg = `${pathname === '/' ? 'article__button-save' : 'article__button-delete'}`;
+  const articleMessage = `${pathname === '/' ? 'Войдите, чтобы сохранять статьи' : 'Убрать из сохранённых'}`;
+
     return(
       <section className="saved-news">
         <div className="saved-news__container">
@@ -17,12 +24,12 @@ function SavedNews() {
 
               <div className="article__icons">
                 <div className="article__icons-category">
-                  <p className="article__category">Природа</p>
+                  <p className={`article__category ${categoryNone}`}>Природа</p>
                 </div>
 
                 <div className="article__icons-message">
-                  <p className="article__message">Убрать из сохранённых</p>
-                  <button className="article__button article__button-delete" type="button" />
+                  <p className="article__message">{articleMessage}</p>
+                  <button className={`article__button ${articleButtonImg}`} type="button" />
                 </div>
               </div>
 
@@ -47,12 +54,12 @@ function SavedNews() {
 
               <div className="article__icons">
                 <div className="article__icons-category">
-                  <p className="article__category">Природа</p>
+                  <p className={`article__category ${categoryNone}`}>Природа</p>
                 </div>
 
                 <div className="article__icons-message">
-                  <p className="article__message">Убрать из сохранённых</p>
-                  <button className="article__button article__button-delete" type="button" />
+                  <p className="article__message">{articleMessage}</p>
+                  <button className={`article__button ${articleButtonImg}`} type="button" />
                 </div>
               </div>
 
@@ -77,12 +84,12 @@ function SavedNews() {
 
               <div className="article__icons">
                 <div className="article__icons-category">
-                  <p className="article__category">Природа</p>
+                  <p className={`article__category ${categoryNone}`}>Природа</p>
                 </div>
 
                 <div className="article__icons-message">
-                  <p className="article__message">Убрать из сохранённых</p>
-                  <button className="article__button article__button-delete" type="button" />
+                  <p className="article__message">{articleMessage}</p>
+                  <button className={`article__button ${articleButtonImg}`} type="button" />
                 </div>
               </div>
 
@@ -105,12 +112,12 @@ function SavedNews() {
 
               <div className="article__icons">
                 <div className="article__icons-category">
-                  <p className="article__category">Природа</p>
+                  <p className={`article__category ${categoryNone}`}>Природа</p>
                 </div>
 
                 <div className="article__icons-message">
-                  <p className="article__message">Убрать из сохранённых</p>
-                  <button className="article__button article__button-delete" type="button" />
+                  <p className="article__message">{articleMessage}</p>
+                  <button className={`article__button ${articleButtonImg}`} type="button" />
                 </div>
               </div>
 
@@ -135,12 +142,12 @@ function SavedNews() {
 
               <div className="article__icons">
                 <div className="article__icons-category">
-                  <p className="article__category">Природа</p>
+                  <p className={`article__category ${categoryNone}`}>Природа</p>
                 </div>
 
                 <div className="article__icons-message">
-                  <p className="article__message">Убрать из сохранённых</p>
-                  <button className="article__button article__button-delete" type="button" />
+                  <p className="article__message">{articleMessage}</p>
+                  <button className={`article__button ${articleButtonImg}`} type="button" />
                 </div>
               </div>
 

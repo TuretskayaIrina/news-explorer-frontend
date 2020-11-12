@@ -4,7 +4,6 @@
 }
 
 .navigation__link-item {
- text-decoration: none;
  font-family: "Roboto", "Arial", sans-serif;
  font-size: 18px;
  line-height: 77px;
@@ -13,6 +12,10 @@
  margin-right: 32px;
  display: block;
  box-sizing: border-box;
+}
+
+.navigation__link-decoration {
+  text-decoration: none;
 }
 
 .navigation__link-item_black {
@@ -39,7 +42,7 @@
   cursor: default;
 }
 
-.navigation__button-auth {
+.navigation__button {
   font-family: "Roboto", "Arial", sans-serif;
   font-size: 18px;
   line-height: 24px;
@@ -50,15 +53,26 @@
   padding: 12px;
   background: none;
   height: 48px;
+  display: flex;
+  align-items: center;
 }
 
-.navigation__button-auth_black {
+.navigation__button_logout {
   color: #1A1B22;
   border: 1px solid #1A1B22;
+  text-decoration: none;
 }
 
-.navigation__button-auth:hover {
+.navigation__button-none {
+  display: none;
+}
+
+.navigation__button:hover {
   cursor: pointer;
   transition: .5s;
   opacity: 0.9;
+}
+
+.navigation__button-img {
+
 }

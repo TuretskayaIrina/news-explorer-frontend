@@ -63,6 +63,10 @@
   margin: 0 5px 0 0;
 }
 
+.article__category_none {
+  display: none;
+}
+
 .article__icons-message:hover .article__message {
   display: block;
 }
