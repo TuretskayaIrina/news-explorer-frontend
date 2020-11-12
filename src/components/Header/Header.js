@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 
-function Header() {
+function Header(props) {
 
   const { pathname } = useLocation();
 
@@ -14,7 +14,7 @@ function Header() {
       <header className={`header ${headerWhite}`}>
         <div className="header__container">
           <Link to="/" className={`header__logo ${headerLogoBlack}`}>NewsExplorer</Link>
-          <Navigation />
+          <Navigation handleAuthClick={props.handleAuthClick} />
         </div>
 
       </header>

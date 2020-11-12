@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import logout from '../../images/icon/logout.svg';
 
-function Navigation() {
+function Navigation(props) {
 
   const { pathname } = useLocation();
 
@@ -17,7 +17,7 @@ function Navigation() {
         <NavLink exact to="/" className={`navigation__link-item navigation__link-decoration ${navLinkBlack}`} activeClassName={`navigation__link-item_active ${navLinkActiveBlack}`}>Главная</NavLink>
         <NavLink to="/saved-news" className={`navigation__link-item navigation__link-decoration ${navLinkBlack}`} activeClassName={`navigation__link-item_active ${navLinkActiveBlack}`}>Сохранённые статьи</NavLink>
 
-        <button className={navButtonAuth}>Авторизоваться</button>
+        <button className={navButtonAuth} onClick={props.handleAuthClick}>Авторизоваться</button>
 
         <NavLink exact to="/" className="navigation__link-decoration">
           <button className={navButtonLogout}>Грета
