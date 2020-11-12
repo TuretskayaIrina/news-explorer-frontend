@@ -32,7 +32,7 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
     onSubmit={handleSubmit}
     name='popup-auth'
     title='Вход'
-    buttonText='Сохранить'
+    text='или '
     clickButtonText='Зарегистрироваться'
     children={
       <>
@@ -68,6 +68,8 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
         />
 
         <span id="password-error" className="popup__input-error" />
+
+        <button className="popup__button-save" type="submit">Сохранить</button>
       </>
     }
     />

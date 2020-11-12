@@ -10,12 +10,14 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SavedNews from '../SavedNews/SavedNews';
 import PopupAuth from '../PopupAuth/PopupAuth';
 import PopupRegister from '../PopupRegister/PopupRegister';
+import PopupSuccessful from '../PopupSuccessful/PopupSuccessful';
 
 
 function App() {
 
   const [isAuthPopupOpen, setAuthPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
+  const [isSuccessfulPopupOpen, setSuccessfulPopupOpen] = React.useState(false);
   const history = useHistory();
 
   // открыть попап авторизации
@@ -28,17 +30,26 @@ function App() {
     setRegisterPopupOpen(true);
   }
 
+  // открыть попап успешной регистрации
+  function handleSuccessfulClick() {
+    setSuccessfulPopupOpen(true);
+  }
+
   // обработчик переключения попапов
   function handleChangePopup() {
     console.log('переключили');
 
-   if (isAuthPopupOpen) {
+    if (isAuthPopupOpen) {
       handleResisterClick();
       setAuthPopupOpen(false);
     }
     if (isRegisterPopupOpen) {
       handleAuthClick();
       setRegisterPopupOpen(false);
+    }
+    if (isSuccessfulPopupOpen) {
+      handleAuthClick();
+      setSuccessfulPopupOpen(false);
     }
 
   }
@@ -47,6 +58,7 @@ function App() {
   function closeAllPopups() {
     setAuthPopupOpen(false);
     setRegisterPopupOpen(false);
+    setSuccessfulPopupOpen(false);
   }
 
   // обработчик авторизации
@@ -60,7 +72,8 @@ function App() {
   // обработчик регистрации
   function handleRegister() {
     console.log('Зарегался');
-    closeAllPopups()
+    handleSuccessfulClick();
+    setRegisterPopupOpen(false);
   }
 
   // закрыть на Esc
@@ -120,6 +133,12 @@ function App() {
         onClose={closeAllPopups}
         onRegister={handleRegister}
         onClickPopup={handleChangePopup}
+      />
+
+      <PopupSuccessful
+       isOpen={isSuccessfulPopupOpen}
+       onClose={closeAllPopups}
+       onClickPopup={handleChangePopup}
       />
 
     </div>

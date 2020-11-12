@@ -39,6 +39,7 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
     name='popup-register'
     title='Регистрация'
     buttonText='Зарегистрироваться'
+    text='или '
     clickButtonText='Войти'
     children={
       <>
@@ -90,6 +91,8 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
         <span id="name-register-error" className="popup__input-error" >test</span>
 
         <span id="register-error" className="popup__input-error popup__register-error" >Такой пользователь уже есть</span>
+
+        <button className="popup__button-save" type="submit">Зарегистрироваться</button>
       </>
     }
     />
