@@ -1,21 +1,22 @@
 import './PopupAuth.css';
 import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import FormValidator from '../../hooks/FormValidator';
 
 function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
 
-  const[ email, setEmail ] = React.useState('');
-  const[ password, setPassword ] = React.useState('');
+  // это будет валидироваться статусами ответа от api
+  // или выводить кастомное сообщение ошибки api, которое будет писать celebrate/Joi?
+  // возможно использовать для вывода ошибок под инпутами
+  // понятно будет после подключения api
+  // а еще куда-то выводить "Неверная почта или пароль"
+  // возможно над кнопкой "Войти" или добавить попап с ошибкой входа?
+  // const [message, setMessage] = React.useState('Такой пользователь уже есть');
 
-  // обработчик изменения email
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
-
-  // обработчик изменения пароля
-  function handleChangePassword(e) {
-    setPassword (e.target.value);
-  }
+  const {values, handleChange, errors, isValid, resetForm} = FormValidator();
+  React.useEffect(() => {
+    resetForm();
+  }, [ isOpen, resetForm ]);
 
   // обработчик отправки авторизации
   function handleSubmit(e) {
@@ -38,38 +39,32 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
       <>
         <label className="popup__label">Email</label>
         <input
-          value={email|| ''}
-          onChange={handleChangeEmail}
+          value={values.email|| ''}
+          onChange={handleChange}
           id="email"
           className="popup__input popup__input_email"
-          type="text"
-          name="emailInput"
+          type="email"
+          name="email"
           placeholder="Введите почту"
           required
-          minLength="2"
-          maxLength="30"
-          pattern="\S+@\S+\.\S+"
         />
-        <span id="email-auth-error" className="popup__input-error" >test</span>
+        <span id="email-auth-error" className="popup__input-error" >{errors.email || ''}</span>
 
         <label className="popup__label">Пароль</label>
         <input
-          value={password || ''}
-          onChange={handleChangePassword}
+          value={values.password || ''}
+          onChange={handleChange}
           id="password"
           className="popup__input popup__input_password"
           type="password"
-          name="passwordInput"
+          name="password"
           placeholder="Введите пароль"
           required
-          minLength="8"
-          maxLength="30"
-          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
         />
 
-        <span id="password-error" className="popup__input-error" />
+        <span id="password-error" className="popup__input-error" >{errors.password || ''}</span>
 
-        <button className="popup__button-save" type="submit">Сохранить</button>
+        <button className={`popup__button-save ${isValid ? 'popup__button-save_active' : 'popup__button-save_disabled'}`}  type="submit" disabled={!isValid}>Войти</button>
       </>
     }
     />

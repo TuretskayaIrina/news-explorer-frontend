@@ -1,27 +1,22 @@
 import './PopupRegister.css';
 import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import FormValidator from '../../hooks/FormValidator';
 
 function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
+  // нужно будет прикрутить паттерн на пароль
+  // и менять стандартное сообщение ошибки
+  // или выводить кастомное сообщение ошибки api, которое будет писать celebrate/Joi?
 
-  const[ email, setEmail ] = React.useState('');
-  const[ password, setPassword ] = React.useState('');
-  const[ name, setName ] = React.useState('');
+  // это будет валидироваться статусами ответа от api
+  // возможно использовать для вывода ошибок под инпутами
+  // понятно будет после подключения api
+  const [message, setMessage] = React.useState('Такой пользователь уже есть');
 
-  // обработчик изменения email
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
-
-  // обработчик изменения пароля
-  function handleChangePassword(e) {
-    setPassword (e.target.value);
-  }
-
-  // обработчик изменения имени
-  function handleChangeName(e) {
-    setName (e.target.value);
-  }
+  const {values, handleChange, errors, isValid, resetForm} = FormValidator();
+  React.useEffect(() => {
+    resetForm();
+  }, [ isOpen, resetForm ]);
 
   // обработчик отправки регистрации
   function handleSubmit(e) {
@@ -45,54 +40,53 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
       <>
         <label className="popup__label">Email</label>
         <input
-          value={email|| ''}
-          onChange={handleChangeEmail}
+          value={values.email|| ''}
+          onChange={handleChange}
           id="email"
           className="popup__input popup__input_email"
-          type="text"
-          name="emailInput"
+          type="email"
+          name="email"
           placeholder="Введите почту"
           required
+          unique
           minLength="2"
           maxLength="30"
-          pattern="\S+@\S+\.\S+"
         />
-        <span id="email-auth-error" className="popup__input-error" >test</span>
+        <span id="email-auth-error" className="popup__input-error" >{errors.email || ''}</span>
 
         <label className="popup__label">Пароль</label>
         <input
-          value={password || ''}
-          onChange={handleChangePassword}
+          value={values.password || ''}
+          onChange={handleChange}
           id="password"
           className="popup__input popup__input_password"
           type="password"
-          name="passwordInput"
+          name="password"
           placeholder="Введите пароль"
           required
           minLength="8"
           maxLength="30"
-          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
         />
-        <span id="password-error" className="popup__input-error" />
+        <span id="password-error" className="popup__input-error" >{errors.password || ''}</span>
 
         <label className="popup__label">Имя</label>
         <input
-          value={name|| ''}
-          onChange={handleChangeName}
+          value={values.name|| ''}
+          onChange={handleChange}
           id="name"
           className="popup__input popup__input_name"
           type="text"
-          name="namelInput"
+          name="name"
           placeholder="Введите своё имя"
           required
           minLength="2"
           maxLength="30"
         />
-        <span id="name-register-error" className="popup__input-error" >test</span>
+        <span id="name-register-error" className="popup__input-error" >{errors.name || ''}</span>
 
-        <span id="register-error" className="popup__input-error popup__register-error" >Такой пользователь уже есть</span>
+        <span id="register-error" className="popup__input-error popup__register-error">{message}</span>
 
-        <button className="popup__button-save" type="submit">Зарегистрироваться</button>
+        <button className={`popup__button-save ${isValid ? 'popup__button-save_active' : 'popup__button-save_disabled'}`}  type="submit" disabled={!isValid}>Зарегистрироваться</button>
       </>
     }
     />

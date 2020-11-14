@@ -41,7 +41,7 @@
   font-family: "Roboto", "Arial", sans-serif;
   font-style: normal;
   font-weight: 900;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 28px;
   color: #1A1B22;
   margin: 0;
@@ -75,10 +75,10 @@
 .popup__input-error {
   font-family: "Roboto", "Arial", sans-serif;
   width: 358px;
-  height: 12px;
+  height: 15px;
   z-index: 1;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 11px;
   color: red;
   display: block;
   margin: 0 auto 5px;
@@ -96,8 +96,6 @@
   font-size: 18px;
   line-height: 24px;
   text-align: center;
-  color: #fff;
-  background: #2F71E5;
   border-radius: 100px;
   width: 360px;
   height: 64px;
@@ -106,7 +104,17 @@
   border: none;
 }
 
-.popup__button-save:hover {
+.popup__button-save_disabled {
+  background: #E6E8EB;
+  color: #B6BCBF;
+}
+
+.popup__button-save_active {
+  color: #fff;
+  background: #2F71E5;
+}
+
+.popup__button-save_active:hover {
   background: #347EFF;
   cursor: pointer;
   transition: .2s;
