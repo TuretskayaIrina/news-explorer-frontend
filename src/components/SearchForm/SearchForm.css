@@ -104,3 +104,38 @@
     padding: 17px 50px;
   }
 }
+
+@media screen and (max-width: 750px) {
+  .search {
+    padding: 86px 0 32px 0;
+    background-position: bottom;
+  }
+
+  .search__container {
+    margin: 0 16px;
+    max-width: 100%;
+  }
+
+  .search__title {
+    padding: 0;
+  }
+
+  .search__subtitle {
+    margin: 0 0 122px 0;
+  }
+
+  .search__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search__input {
+    margin-bottom: 16px;
+    padding: 17px 16px;
+  }
+
+  .search__bth {
+    position: relative;
+    justify-content: center;
+  }
+}

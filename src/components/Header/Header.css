@@ -44,4 +44,20 @@
   .header__container {
     min-height: 66px;
   }
+
+  .header__logo {
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .header__logo {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .header__container {
+    min-height: 56px;
+    margin: 0 16px;
+  }
 }

@@ -92,3 +92,24 @@
     padding: 0 28px 0 0;
   }
 }
+
+@media screen and (max-width: 750px) {
+  .footer {
+    margin: 0 16px;
+    flex-direction: column-reverse;
+  }
+
+  .footer__links {
+    flex-direction: column;
+    padding: 0 60px 20px 0;
+    justify-content: space-between;
+  }
+
+  .footer__link {
+    line-height: 48px;
+  }
+
+  .footer__links-item:last-of-type {
+    padding-bottom: 0;
+  }
+}

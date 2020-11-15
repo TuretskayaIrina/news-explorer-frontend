@@ -76,6 +76,13 @@
 
 }
 
+@media screen and (max-width: 1312px) {
+  .navigation__button {
+    padding: 8px 12px;
+  }
+}
+
+
 @media screen and (max-width: 900px) {
   .navigation__link-item {
     font-size: 16px;
@@ -86,6 +93,11 @@
   .navigation__button {
     font-size: 16px;
     line-height: 24px;
-    padding: 8px 12px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .navigation {
+    display: none;
   }
 }
