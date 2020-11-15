@@ -52,7 +52,6 @@
   border-radius: 100px;
   padding: 12px;
   background: none;
-  height: 48px;
   display: flex;
   align-items: center;
 }
@@ -75,4 +74,18 @@
 
 .navigation__button-img {
 
+}
+
+@media screen and (max-width: 900px) {
+  .navigation__link-item {
+    font-size: 16px;
+    line-height: 63px;
+    margin-right: 16px;
+  }
+
+  .navigation__button {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 12px;
+  }
 }

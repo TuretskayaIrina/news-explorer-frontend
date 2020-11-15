@@ -4,6 +4,9 @@ import { useLocation } from 'react-router-dom';
 
 function NewsCard(props) {
 
+  // тут нужно что-то сделать с логикой сохранения карточек и всплывающей подсказкой
+  // в зависимости от ширины экрана и состояния залогинен/не залогинен
+
   const { pathname } = useLocation();
 
   const categoryNone = `${pathname === '/' ? 'article__category_none' : ''}`;

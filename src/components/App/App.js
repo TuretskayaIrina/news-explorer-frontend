@@ -11,6 +11,7 @@ import SavedNews from '../SavedNews/SavedNews';
 import PopupAuth from '../PopupAuth/PopupAuth';
 import PopupRegister from '../PopupRegister/PopupRegister';
 import PopupSuccessful from '../PopupSuccessful/PopupSuccessful';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
   const [isAuthPopupOpen, setAuthPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isSuccessfulPopupOpen, setSuccessfulPopupOpen] = React.useState(false);
+
+  const [currentUser, setCurrentUser] = React.useState({name: 'Грета'});
+
   const history = useHistory();
 
   // открыть попап авторизации
@@ -103,44 +107,44 @@ function App() {
 
   return (
     <div className="App">
+      <CurrentUserContext.Provider value={currentUser}>
+        <Header handleAuthClick={handleAuthClick}/>
 
-      <Header handleAuthClick={handleAuthClick}/>
+        <Switch>
+          <Route exact path="/">
+            <SearchForm />
+            <Main />
+            <About />
+          </Route>
 
-      <Switch>
-        <Route exact path="/">
-          <SearchForm />
-          <Main />
-          <About />
-        </Route>
+          <Route path="/saved-news">
+            <SavedNewsHeader />
+            <SavedNews />
+          </Route>
+        </Switch>
 
-        <Route path="/saved-news">
-          <SavedNewsHeader />
-          <SavedNews />
-        </Route>
-      </Switch>
+        <Footer />
 
-      <Footer />
+        <PopupAuth
+          isOpen={isAuthPopupOpen}
+          onClose={closeAllPopups}
+          onAuth={handleAuth}
+          onClickPopup={handleChangePopup}
+        />
 
-      <PopupAuth
-        isOpen={isAuthPopupOpen}
+        <PopupRegister
+          isOpen={isRegisterPopupOpen}
+          onClose={closeAllPopups}
+          onRegister={handleRegister}
+          onClickPopup={handleChangePopup}
+        />
+
+        <PopupSuccessful
+        isOpen={isSuccessfulPopupOpen}
         onClose={closeAllPopups}
-        onAuth={handleAuth}
         onClickPopup={handleChangePopup}
-      />
-
-      <PopupRegister
-        isOpen={isRegisterPopupOpen}
-        onClose={closeAllPopups}
-        onRegister={handleRegister}
-        onClickPopup={handleChangePopup}
-      />
-
-      <PopupSuccessful
-       isOpen={isSuccessfulPopupOpen}
-       onClose={closeAllPopups}
-       onClickPopup={handleChangePopup}
-      />
-
+        />
+      </CurrentUserContext.Provider>
     </div>
   );
 }

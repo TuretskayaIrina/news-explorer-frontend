@@ -42,7 +42,7 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
         <input
           value={values.email|| ''}
           onChange={handleChange}
-          id="email"
+          id="email-input"
           className="popup__input popup__input_email"
           type="email"
           name="email"
@@ -58,7 +58,7 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
         <input
           value={values.password || ''}
           onChange={handleChange}
-          id="password"
+          id="password-input"
           className="popup__input popup__input_password"
           type="password"
           name="password"
@@ -73,7 +73,7 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
         <input
           value={values.name|| ''}
           onChange={handleChange}
-          id="name"
+          id="name-input"
           className="popup__input popup__input_name"
           type="text"
           name="name"

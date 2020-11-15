@@ -3,7 +3,7 @@ import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 import saveArticles from '../../data/saveArticles';
 
-function SavedNews(props) {
+function SavedNews() {
 
     return(
       <section className="saved-news">

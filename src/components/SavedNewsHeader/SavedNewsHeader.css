@@ -36,3 +36,36 @@
 .news-header__keys-span {
   font-weight: bold;
 }
+
+@media screen and (max-width: 1312px) {
+  .news-header__container {
+    margin: 0 40px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .news-header {
+    padding: 90px 0 32px 0;
+  }
+
+  .news-header__container {
+    max-width: 350px;
+  }
+
+  .news-header__tile {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0 0 16px 0;
+  }
+
+  .news-header__counter {
+    font-size: 30px;
+    line-height: 34px;
+    margin: 0 0 16px 0;
+  }
+
+  .news-header__keys {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}

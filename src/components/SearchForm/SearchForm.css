@@ -75,3 +75,32 @@
   background-color: #2A65CC;;
   transition: background-color .5s;
 }
+
+@media screen and (max-width: 900px) {
+  .search {
+    padding: 104px 0 48px 0;
+  }
+
+  .search__container {
+    max-width: 450px;
+  }
+
+  .search__title {
+    font-size: 36px;
+    line-height: 40px;
+    padding-right: 50px;
+    margin: 0 0 16px 0;
+  }
+
+  .search__subtitle {
+    margin: 0 0 48px 0;
+  }
+
+  .search__input {
+    padding: 17px 24px;
+  }
+
+  .search__bth {
+    padding: 17px 50px;
+  }
+}

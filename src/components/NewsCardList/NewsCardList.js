@@ -3,7 +3,7 @@ import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 import articles from '../../data/articles';
 
-function NewsCardList(props) {
+function NewsCardList() {
     return(
       <section className="news">
         <h2 className="news__title">Результаты поиска</h2>

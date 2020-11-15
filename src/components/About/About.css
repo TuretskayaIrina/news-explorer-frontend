@@ -8,6 +8,7 @@
 .about__avatar {
   width: 464px;
   height: 464px;
+  border-radius: 50%;
   margin-right: 56px;
 }
 
@@ -21,6 +22,7 @@
   font-family: "Roboto Slab", "Arial", sans-serif;
   font-size: 40px;
   line-height: 46px;
+  font-weight: normal;
   color: #1A1B22;
   margin: 0 24px 0 0 ;
 }
@@ -30,4 +32,35 @@
   font-size: 18px;
   line-height: 24px;
   color: #1A1B22;
+}
+
+@media screen and (max-width: 1312px) {
+  .about {
+    margin: 0 40px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .about {
+    padding: 40px 0;
+  }
+
+  .about__avatar {
+    width: 232px;
+    height: 232px;
+    margin: 20px 32px 0 0;
+  }
+
+  .about__author {
+    margin: 0;
+  }
+
+  .about__author-title {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .about__author-description {
+    margin: 16px 0;
+  }
 }
