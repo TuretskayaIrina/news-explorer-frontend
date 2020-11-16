@@ -19,7 +19,7 @@ function App() {
   const [isAuthPopupOpen, setAuthPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isSuccessfulPopupOpen, setSuccessfulPopupOpen] = React.useState(false);
-
+  const [isBurger, setBurger] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({name: 'Грета'});
 
   const history = useHistory();
@@ -105,10 +105,22 @@ function App() {
     };
   })
 
+  // красим шапку меню
+  // нужно что-то менять...
+  // может красить в зависимости от скролла?
+  function handleClickBurger() {
+    console.log('checked');
+    setBurger(true);
+  }
+
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header handleAuthClick={handleAuthClick}/>
+        <Header
+          handleAuthClick={handleAuthClick}
+          isOpen={handleClickBurger}
+          isOpenBurger={isBurger}
+        />
 
         <Switch>
           <Route exact path="/">

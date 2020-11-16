@@ -1,7 +1,7 @@
 import './BurgerMenu.css';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logout from '../../images/icon/logout-white.svg';
+import logout from '../../images/icon/logout.svg';
 
 function BurgerMenu(props) {
 
@@ -16,12 +16,12 @@ function BurgerMenu(props) {
     return(
       <div className="burger">
 
-        <input type="checkbox" id="checkbox" class="burger__checkbox" onClick={props.handleClickBurger} />
+        <input type="checkbox" id="checkbox" class="burger__checkbox" onClick={props.isOpen}/>
         <label for="checkbox" class="burger__btn">
           <div class={iconStyle}></div>
         </label>
 
-        <div class={bgStyle}>
+        <div class={(props.isOpen ? `burger__list_active ${bgStyle}` : `${bgStyle}`)}>
           <div className="burger__container">
             <Link exact to="/" className={textStyle}>Главная</Link>
             <Link to="/saved-news" className={textStyle}>Сохранённые статьи</Link>

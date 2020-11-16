@@ -10,20 +10,14 @@ function Header(props) {
 
   const headerStyle = `${pathname === '/saved-news' ? 'header_white' : ''}`;
   const headerLogoBlack = `${pathname === '/saved-news' ? 'header__logo_black' : ''}`;
-
-  function handleClickBurger(evt) {
-    const checked = evt.target.checked;
-    if (checked && pathname === '/') {
-      console.log('checked');
-    }
-  }
+  const headerBg = `${pathname === '/' && props.isOpenBurger ? `header header_ckeck-burger ${headerStyle}` : `header ${headerStyle}`}`;
 
     return(
-      <header className={`header ${headerStyle}`}>
+      <header className={headerBg}>
         <div className="header__container">
           <Link to="/" className={`header__logo ${headerLogoBlack}`}>NewsExplorer</Link>
           <Navigation handleAuthClick={props.handleAuthClick} />
-          <BurgerMenu handleClickBurger={handleClickBurger}/>
+          <BurgerMenu handleAuthClick={props.handleAuthClick} isOpen={props.isOpen}/>
         </div>
 
       </header>

@@ -10,7 +10,7 @@ function SearchForm() {
           <p className="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
 
           <form className="search__form">
-            <input className="search__input" placeholder="Введите тему новости"/>
+            <input className="search__input" placeholder="Введите тему новости" required/>
             <button className="search__bth">Искать</button>
           </form>
         </div>

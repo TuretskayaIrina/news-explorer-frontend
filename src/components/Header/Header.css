@@ -5,6 +5,7 @@
   left: 0;
   background: rgba(196, 196, 196, 0.01);
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  z-index: 3;
 }
 
 .header_white {
@@ -55,6 +56,10 @@
 }
 
 @media screen and (max-width: 750px) {
+  .header_ckeck-burger {
+    background: #1A1B22;
+  }
+
   .header__logo {
     font-size: 16px;
     line-height: 24px;

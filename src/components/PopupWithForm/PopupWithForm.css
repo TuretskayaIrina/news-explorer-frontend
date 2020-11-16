@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  z-index: 1;
+  z-index: 4;
   visibility: hidden;
   opacity: 0;
   transition: visibility 1s,opacity .5s linear;
@@ -120,7 +120,7 @@
   transition: .2s;
 }
 
-.popup__button-save:focus {
+.popup__button-save:active {
   background: #2A65CC;
 }
 
