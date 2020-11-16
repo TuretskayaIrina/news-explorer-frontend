@@ -3,6 +3,11 @@
   align-items: center;
 }
 
+.navigation__container {
+  display: flex;
+  align-items: center;
+}
+
 .navigation__link-item {
  font-family: "Roboto", "Arial", sans-serif;
  font-size: 18px;

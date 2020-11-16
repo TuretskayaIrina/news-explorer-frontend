@@ -1,8 +1,8 @@
 import './Main.css';
 import React from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
-import NotFound from '../NotFound/NotFound';
-import Preloader from '../Preloader/Preloader';
+// import NotFound from '../NotFound/NotFound';
+// import Preloader from '../Preloader/Preloader';
 
 function Main() {
     return(

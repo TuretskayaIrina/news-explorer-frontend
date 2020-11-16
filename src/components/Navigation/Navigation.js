@@ -14,16 +14,22 @@ function Navigation(props) {
     return(
       <nav className="navigation">
 
-        <NavLink exact to="/" className={`navigation__link-item navigation__link-decoration ${navLinkBlack}`} activeClassName={`navigation__link-item_active ${navLinkActiveBlack}`}>Главная</NavLink>
-        <NavLink to="/saved-news" className={`navigation__link-item navigation__link-decoration ${navLinkBlack}`} activeClassName={`navigation__link-item_active ${navLinkActiveBlack}`}>Сохранённые статьи</NavLink>
+        <div className="navigation__container">
 
-        <button className={navButtonAuth} onClick={props.handleAuthClick}>Авторизоваться</button>
+          <NavLink exact to="/" className={`navigation__link-item navigation__link-decoration ${navLinkBlack}`} activeClassName={`navigation__link-item_active ${navLinkActiveBlack}`}>Главная</NavLink>
+          <NavLink to="/saved-news" className={`navigation__link-item navigation__link-decoration ${navLinkBlack}`} activeClassName={`navigation__link-item_active ${navLinkActiveBlack}`}>Сохранённые статьи</NavLink>
 
-        <NavLink exact to="/" className="navigation__link-decoration">
-          <button className={navButtonLogout}>Грета
-            <img className="navigation__button-img" alt="logout" src={logout} />
-          </button>
-        </NavLink>
+          <button className={navButtonAuth} onClick={props.handleAuthClick}>Авторизоваться</button>
+
+          <NavLink exact to="/" className="navigation__link-decoration">
+            <button className={navButtonLogout}>Грета
+              <img className="navigation__button-img" alt="logout" src={logout} />
+            </button>
+          </NavLink>
+
+        </div>
+
+
 
       </nav>
     );
