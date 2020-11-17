@@ -124,7 +124,7 @@ function App() {
 
         <Switch>
           {/* после защиты роутов реализовать exact path="/" */}
-          <Route path="/">
+          <Route exact path="/">
             <SearchForm />
             <Main />
             <About />
