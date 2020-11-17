@@ -11,9 +11,6 @@
     display: block;
   }
 
-  .burger__checkbox:checked ~ .header {
-    background: #1A1B22;
-  }
   .burger__checkbox:checked ~ .burger__list_dark {
     background: #1A1B22;
   }

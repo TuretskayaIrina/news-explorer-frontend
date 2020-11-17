@@ -16,21 +16,22 @@ function BurgerMenu(props) {
     return(
       <div className="burger">
 
-        <input type="checkbox" id="checkbox" class="burger__checkbox" onClick={props.isOpen}/>
-        <label for="checkbox" class="burger__btn">
-          <div class={iconStyle}></div>
+        <input type="checkbox" id="checkbox" className="burger__checkbox" onClick={props.isOpen}/>
+        <label htmlFor="checkbox" className="burger__btn">
+          <div className={iconStyle}></div>
         </label>
 
-        <div class={(props.isOpen ? `burger__list_active ${bgStyle}` : `${bgStyle}`)}>
+        <div className={(props.isOpen ? `burger__list_active ${bgStyle}` : `${bgStyle}`)}>
           <div className="burger__container">
-            <Link exact to="/" className={textStyle}>Главная</Link>
+            <Link to="/" className={textStyle}>Главная</Link>
             <Link to="/saved-news" className={textStyle}>Сохранённые статьи</Link>
 
-            <Link className={textStyle}>
+            {/* тут будет ссылка на авторизацию, но так как ее пока нет стоит "/" чтобы консоль не ругалась */}
+            <Link to="/" className={textStyle}>
               <button className={buttonAuth} onClick={props.handleAuthClick}>Авторизоваться</button>
             </Link>
 
-            <Link exact to="/" className={textStyle}>
+            <Link to="/" className={textStyle}>
               <button className={buttonLogout}>Грета
                 <img className="burger__link-img" alt="logout" src={logout} />
               </button>

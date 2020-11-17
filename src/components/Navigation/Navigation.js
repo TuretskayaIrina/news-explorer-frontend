@@ -16,12 +16,12 @@ function Navigation(props) {
 
         <div className="navigation__container">
 
-          <NavLink exact to="/" className={`navigation__link-item navigation__link-decoration ${navLinkBlack}`} activeClassName={`navigation__link-item_active ${navLinkActiveBlack}`}>Главная</NavLink>
+          <NavLink to="/" className={`navigation__link-item navigation__link-decoration ${navLinkBlack}`} activeClassName={`navigation__link-item_active ${navLinkActiveBlack}`}>Главная</NavLink>
           <NavLink to="/saved-news" className={`navigation__link-item navigation__link-decoration ${navLinkBlack}`} activeClassName={`navigation__link-item_active ${navLinkActiveBlack}`}>Сохранённые статьи</NavLink>
 
           <button className={navButtonAuth} onClick={props.handleAuthClick}>Авторизоваться</button>
 
-          <NavLink exact to="/" className="navigation__link-decoration">
+          <NavLink to="/" className="navigation__link-decoration">
             <button className={navButtonLogout}>Грета
               <img className="navigation__button-img" alt="logout" src={logout} />
             </button>

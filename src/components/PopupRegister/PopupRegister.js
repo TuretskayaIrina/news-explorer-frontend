@@ -48,7 +48,6 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
           name="email"
           placeholder="Введите почту"
           required
-          unique
           minLength="2"
           maxLength="30"
         />

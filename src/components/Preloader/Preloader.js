@@ -4,8 +4,8 @@ import React from 'react';
 function Preloader() {
     return(
       <section className="preloader">
-          <i class="preloader__circle"></i>
-          <p  class="preloader__message">Идет поиск новостей...</p>
+          <i className="preloader__circle"></i>
+          <p  className="preloader__message">Идет поиск новостей...</p>
       </section>
     );
 }

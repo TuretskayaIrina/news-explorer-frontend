@@ -123,7 +123,8 @@ function App() {
         />
 
         <Switch>
-          <Route exact path="/">
+          {/* после защиты роутов реализовать exact path="/" */}
+          <Route path="/">
             <SearchForm />
             <Main />
             <About />

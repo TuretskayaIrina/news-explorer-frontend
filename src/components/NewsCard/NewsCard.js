@@ -14,9 +14,7 @@ function NewsCard(props) {
   const articleMessage = `${pathname === '/' ? 'Войдите, чтобы сохранять статьи' : 'Убрать из сохранённых'}`;
 
     return(
-      <a className="article" href={props.article.sourse} key={props.article._id} target="_blank" rel="noreferrer">
-        <img alt={props.article.title} className="article__img" src={props.article.urlToImage} />
-
+      <div className="article">
         <div className="article__icons">
           <div className="article__icons-category">
           <p className={`article__category ${categoryNone}`}>{props.article.category}</p>
@@ -28,19 +26,24 @@ function NewsCard(props) {
           </div>
         </div>
 
-        <div className="article__about">
-          <div className="article__about-container">
-            <p className="article__date">{props.article.publishedAt}</p>
-            <h3 className="article__name">{props.article.title}</h3>
-            <p className="article__description">{props.article.description}
-            </p>
-          </div>
+        <a className="article__link" href={props.article.sourse} key={props.article._id} target="_blank" rel="noreferrer">
+          <img alt={props.article.title} className="article__img" src={props.article.urlToImage} />
 
-          <div className="article__source-container">
-            <p className="article__source">{props.article.sourseName}</p>
+          <div className="article__about">
+            <div className="article__about-container">
+              <p className="article__date">{props.article.publishedAt}</p>
+              <h3 className="article__name">{props.article.title}</h3>
+              <p className="article__description">{props.article.description}
+              </p>
+            </div>
+
+            <div className="article__source-container">
+              <p className="article__source">{props.article.sourseName}</p>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+
+      </div>
     );
 }
 

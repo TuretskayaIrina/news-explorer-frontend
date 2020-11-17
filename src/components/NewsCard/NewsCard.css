@@ -7,6 +7,10 @@
 }
 
 .article {
+  position: relative;
+}
+
+.article__link {
   border-radius: 15px 15px 0 0;
   overflow: hidden;
   position: relative;
@@ -29,6 +33,7 @@
   display: flex;
   justify-content: space-between;
   width: calc(100% - 48px);
+  z-index: 5;
 }
 
 .article__icons-category {
@@ -90,7 +95,7 @@
   background-image: url('../../images/icon/flag-hover.svg');
 }
 
-.article__button-save:active  {
+.article__button-save:focus  {
   background-image: url('../../images/icon/flag-save.svg');
 }
 
@@ -211,10 +216,6 @@
     height: 270px;
   }
 
-  .article__icons-message:hover .article__message {
-    display: none;
-  }
-
   .article__category {
     padding: 8px 12px;
     font-size: 14px;
@@ -250,5 +251,9 @@
   .article__name {
     line-height: 28px;
     -webkit-line-clamp: 2;
+  }
+
+  .article__icons-message:hover .article__message {
+    display: none;
   }
 }
