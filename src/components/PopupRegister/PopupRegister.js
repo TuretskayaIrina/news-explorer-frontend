@@ -13,6 +13,8 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
   // понятно будет после подключения api
   const [message, setMessage] = React.useState('Такой пользователь уже есть');
 
+
+  // валидация формы
   const {values, handleChange, errors, isValid, resetForm} = FormValidator();
   React.useEffect(() => {
     resetForm();
@@ -21,8 +23,11 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
   // обработчик отправки регистрации
   function handleSubmit(e) {
     e.preventDefault();
+    if (!values.email || !values.password || !values.name) {
+      return;
+    }
+    onRegister(values.email, values.password, values.name);
     console.log('register');
-    onRegister();
   }
 
   return(

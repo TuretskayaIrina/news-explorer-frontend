@@ -16,8 +16,8 @@ function Header(props) {
       <header className={headerBg}>
         <div className="header__container">
           <Link to="/" className={`header__logo ${headerLogoBlack}`}>NewsExplorer</Link>
-          <Navigation handleAuthClick={props.handleAuthClick} />
-          <BurgerMenu handleAuthClick={props.handleAuthClick} isOpen={props.isOpen}/>
+          <Navigation handleAuthClick={props.handleAuthClick} loggedIn={props.loggedIn} handleLogout={props.handleLogout}/>
+          <BurgerMenu handleAuthClick={props.handleAuthClick} loggedIn={props.loggedIn} handleLogout={props.handleLogout}isOpen={props.isOpen}/>
         </div>
 
       </header>

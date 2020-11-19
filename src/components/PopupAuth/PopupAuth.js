@@ -21,8 +21,11 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
   // обработчик отправки авторизации
   function handleSubmit(e) {
     e.preventDefault();
+    if (!values.email || !values.password) {
+      return;
+    }
     console.log('working');
-    onAuth();
+    onAuth(values.email, values.password);
   }
 
   return(

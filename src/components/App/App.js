@@ -1,17 +1,18 @@
 import React from 'react';
-import { Route, Switch, useHistory  } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import Main from '../Main/Main';
 import About from '../About/About';
 import Footer from '../Footer/Footer';
-import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SavedNews from '../SavedNews/SavedNews';
 import PopupAuth from '../PopupAuth/PopupAuth';
 import PopupRegister from '../PopupRegister/PopupRegister';
 import PopupSuccessful from '../PopupSuccessful/PopupSuccessful';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import * as auth from '../../utils/MainApi';
 
 
 function App() {
@@ -20,9 +21,17 @@ function App() {
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isSuccessfulPopupOpen, setSuccessfulPopupOpen] = React.useState(false);
   const [isBurger, setBurger] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState({name: 'Грета'});
+  const [currentUser, setCurrentUser] = React.useState({name: 'Котлета'});
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [userData, setUserData] = React.useState(null);
 
   const history = useHistory();
+
+  // проверить токен в локальном хранилище при монтировании App
+  React.useEffect(() => {
+    tokenCheck();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // открыть попап авторизации
   function handleAuthClick() {
@@ -65,19 +74,63 @@ function App() {
     setSuccessfulPopupOpen(false);
   }
 
-  // обработчик авторизации
-  // возможно, оставлять на главной и просто заменить кнопку в шапке?
-  function handleAuth() {
-    console.log('авторизовался');
-    closeAllPopups()
-    history.push('/saved-news');
+  // обработчик регистрации
+  function handleRegister(email, password, name) {
+    return auth.register(email, password, name)
+      .then(() => {
+        console.log('Зарегался');
+        handleSuccessfulClick();
+        setRegisterPopupOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
-  // обработчик регистрации
-  function handleRegister() {
-    console.log('Зарегался');
-    handleSuccessfulClick();
-    setRegisterPopupOpen(false);
+  // проверить валидность токена и получить данные пользователя
+  // использовать в шапке?
+  function tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      auth.getContent(jwt)
+        .then((res) => {
+          if (res) {
+            setUserData({
+              email: res.name
+            });
+            console.log(res.name);
+            setLoggedIn(true);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
+
+  // обработчик авторизации
+  function handleAuth(email, password) {
+    return auth.authorize(email, password)
+      .then((res) => {
+        if (res && res.token) {
+          localStorage.setItem('jwt', res.token);
+          tokenCheck();
+          console.log('авторизовался');
+          closeAllPopups()
+          history.push('/');
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+  }
+
+  // разлогиниться
+  function handleLogout() {
+    localStorage.removeItem('jwt');
+    history.push('/');
+    setLoggedIn(false);
+    console.log('разлогинились');
   }
 
   // закрыть на Esc
@@ -118,22 +171,29 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Header
           handleAuthClick={handleAuthClick}
+          handleLogout={handleLogout}
           isOpen={handleClickBurger}
           isOpenBurger={isBurger}
+          loggedIn={loggedIn}
         />
 
         <Switch>
-          {/* после защиты роутов реализовать exact path="/" */}
           <Route exact path="/">
             <SearchForm />
             <Main />
             <About />
           </Route>
 
-          <Route path="/saved-news">
-            <SavedNewsHeader />
-            <SavedNews />
+          <ProtectedRoute
+            path="/saved-news"
+            loggedIn={loggedIn}
+            component={SavedNews}
+          />
+
+          <Route>
+            {loggedIn ? <Redirect to="/saved-news"/> : <Redirect to="/"/>}
           </Route>
+
         </Switch>
 
         <Footer />
