@@ -13,6 +13,7 @@ import PopupSuccessful from '../PopupSuccessful/PopupSuccessful';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import * as auth from '../../utils/MainApi';
+import * as news  from '../../utils/NewsApi'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   const [isBurger, setBurger] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [articles, setArticles] = React.useState([]);
 
   const history = useHistory();
 
@@ -125,11 +127,25 @@ function App() {
   }
 
   // разлогиниться
+  // тут нужно будет удалять новости из localStorage
   function handleLogout() {
     localStorage.removeItem('jwt');
     history.push('/');
     setLoggedIn(false);
     console.log('разлогинились');
+  }
+
+  // обработчик поиска новостей
+  function handleSerchNews(keyword) {
+    return news.getNews(keyword)
+      .then((data) => {
+        localStorage.setItem('articles', JSON.stringify(data.articles));
+        setArticles(data.articles);
+        console.log(data.articles);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   // закрыть на Esc
@@ -178,7 +194,7 @@ function App() {
 
         <Switch>
           <Route exact path="/">
-            <SearchForm />
+            <SearchForm serchNews={handleSerchNews}/>
             <Main />
             <About />
           </Route>
