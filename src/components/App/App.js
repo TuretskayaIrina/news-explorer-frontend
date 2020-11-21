@@ -21,9 +21,8 @@ function App() {
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isSuccessfulPopupOpen, setSuccessfulPopupOpen] = React.useState(false);
   const [isBurger, setBurger] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState({name: 'Котлета'});
+  const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [userData, setUserData] = React.useState(null);
 
   const history = useHistory();
 
@@ -95,8 +94,8 @@ function App() {
       auth.getContent(jwt)
         .then((res) => {
           if (res) {
-            setUserData({
-              email: res.name
+            setCurrentUser({
+              name: res.name
             });
             console.log(res.name);
             setLoggedIn(true);
@@ -117,7 +116,7 @@ function App() {
           tokenCheck();
           console.log('авторизовался');
           closeAllPopups()
-          history.push('/');
+          history.push('/saved-news');
         }
       })
       .catch((err) => {

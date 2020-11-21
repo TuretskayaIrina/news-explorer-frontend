@@ -11,7 +11,7 @@
 .navigation__link-item {
  font-family: "Roboto", "Arial", sans-serif;
  font-size: 18px;
- line-height: 77px;
+ line-height: 75px;
  text-align: center;
  color: #FFFFFF;
  margin-right: 32px;
@@ -91,7 +91,7 @@
 @media screen and (max-width: 900px) {
   .navigation__link-item {
     font-size: 16px;
-    line-height: 63px;
+    line-height: 61px;
     margin-right: 16px;
   }
 
