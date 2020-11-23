@@ -27,7 +27,6 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [showNews, setShowNews] = React.useState(false);
-  const [showBth, setShowBth] = React.useState(true)
   const [articles, setArticles] = React.useState([]);
   const [notFound, setNotFound] = React.useState(false);
   const [preloader, setPreloader] = React.useState(false);
@@ -216,7 +215,6 @@ function App() {
             <SearchForm serchNews={handleSerchNews}/>
             <Main
               showNews={showNews}
-              showBth={showBth}
               articles={articles}
             />
             <NotFound

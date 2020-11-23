@@ -1,15 +1,28 @@
 import './NewsCardList.css';
 import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
-// import articles from '../../data/articles';
 
-function NewsCardList({ articles, showNews, showBth }) {
+function NewsCardList({ articles, showNews }) {
 
   const [newArticles, setNewArticles] = React.useState([]);
+  const [showBth, setShowBth] = React.useState(false)
 
   React.useEffect(() => {
-    setNewArticles(articles);
+    setNewArticles(articles.slice(0, 3));
+    if (articles.length <= 3) {
+      setShowBth(false);
+    } else {
+      setShowBth(true);
+    }
+
   }, [articles]);
+
+  function handlerClick() {
+    setNewArticles(articles.slice(0, newArticles.length + 3));
+    if (newArticles.length >= articles.length - 3) {
+      setShowBth(false);
+    }
+  }
 
     return(
       <section className={`news ${showNews ? '' : 'news_none'}`}>
@@ -19,7 +32,7 @@ function NewsCardList({ articles, showNews, showBth }) {
           {newArticles.map((article, key) => (<NewsCard key={key} article={article}/>))}
         </div>
 
-        <button className={`news__bth ${showBth ? '' : 'news__bth_none'}`}>Показать еще</button>
+        <button className={`news__bth ${showBth ? '' : 'news__bth_none'}`} onClick={handlerClick}>Показать еще</button>
       </section>
     );
 }
