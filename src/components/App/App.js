@@ -5,6 +5,8 @@ import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import Main from '../Main/Main';
 import About from '../About/About';
+import NotFound from '../NotFound/NotFound';
+import Preloader from '../Preloader/Preloader';
 import Footer from '../Footer/Footer';
 import SavedNews from '../SavedNews/SavedNews';
 import PopupAuth from '../PopupAuth/PopupAuth';
@@ -24,7 +26,12 @@ function App() {
   const [isBurger, setBurger] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [showNews, setShowNews] = React.useState(false);
+  const [showBth, setShowBth] = React.useState(true)
   const [articles, setArticles] = React.useState([]);
+  const [notFound, setNotFound] = React.useState(false);
+  const [preloader, setPreloader] = React.useState(false);
+
 
   const history = useHistory();
 
@@ -137,14 +144,26 @@ function App() {
 
   // обработчик поиска новостей
   function handleSerchNews(keyword) {
+    setPreloader(true);
+    setNotFound(false);
     return news.getNews(keyword)
       .then((data) => {
+        setShowNews(true);
         localStorage.setItem('articles', JSON.stringify(data.articles));
         setArticles(data.articles);
         console.log(data.articles);
+        setNotFound(false);
+
+        if (data.articles.length === 0) {
+          setShowNews(false);
+          setNotFound(true);
+        }
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setPreloader(false);
       });
   }
 
@@ -195,7 +214,17 @@ function App() {
         <Switch>
           <Route exact path="/">
             <SearchForm serchNews={handleSerchNews}/>
-            <Main />
+            <Main
+              showNews={showNews}
+              showBth={showBth}
+              articles={articles}
+            />
+            <NotFound
+              handleNotFound={notFound}
+            />
+            <Preloader
+              handlePreloader={preloader}
+            />
             <About />
           </Route>
 

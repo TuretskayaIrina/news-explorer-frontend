@@ -21,9 +21,14 @@
 
 .article__img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: 272px;
   max-height: 272px;
-  object-fit: cover;
+  object-fit: contain;
+  background-image: url('../../images/plug.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+
 }
 
 .article__icons {
@@ -209,7 +214,7 @@
   }
 
   .article__img {
-    max-height: 150px;
+    height: 150px;
   }
 
   .article__about {
@@ -245,7 +250,7 @@
   }
 
   .article__img {
-    max-height: 196px;
+    height: 196px;
   }
 
   .article__name {

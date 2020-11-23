@@ -7,6 +7,10 @@
   text-align: center;
 }
 
+.not-found_none {
+  display: none;
+}
+
 .not-found__container {
   max-width: 356px;
   box-sizing: border-box;

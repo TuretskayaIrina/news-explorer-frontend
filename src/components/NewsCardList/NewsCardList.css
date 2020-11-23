@@ -6,6 +6,10 @@
   flex-direction: column;
 }
 
+.news_none {
+  display: none;
+}
+
 .news__title {
   font-family: "Roboto Slab", "Arial", sans-serif;
   font-size: 40px;
@@ -31,6 +35,10 @@
 .news__bth:hover {
   opacity: 0.9;
   cursor: pointer;
+}
+
+.news__bth_none {
+  display: none;
 }
 
 @media screen and (max-width: 1312px) {

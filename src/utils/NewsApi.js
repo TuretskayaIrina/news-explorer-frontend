@@ -7,30 +7,6 @@ import {newsUrl} from './utils';
 // pageSize — максимально допустимый массив 100 статей — это ограничение бесплатной версии.
 
 
-// формат даты для записи в карточку
-// let month =[
-//   "января",
-//   "февраля",
-//   "марта",
-//   "апреля",
-//   "мая",
-//   "июнья",
-//   "июля",
-//   "августа",
-//   "сентября",
-//   "октября",
-//   "ноября",
-//   "декабря",
-// ];
-
-// let now = new Date();
-// let finishDate = new Date();
-// finishDate.setDate(now.getDate()-7);
-
-// console.log(`${finishDate.getDate()} ${month[finishDate.getMonth()]}, ${finishDate.getFullYear()}`);
-// console.log(`${now.getDate()} ${month[now.getMonth()]}, ${now.getFullYear()}`);
-
-
 // формат даты для запроса к api
 let now = new Date();
 

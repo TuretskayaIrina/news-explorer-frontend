@@ -1,15 +1,12 @@
 import './Main.css';
 import React from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
-// import NotFound from '../NotFound/NotFound';
-// import Preloader from '../Preloader/Preloader';
 
-function Main() {
+function Main({ articles, showNews, showBth }) {
+
     return(
       <main className="main">
-        <NewsCardList />
-        {/* <NotFound />
-        <Preloader /> */}
+        <NewsCardList showNews={showNews} showBth={showBth} articles={articles}/>
       </main>
     );
 }
