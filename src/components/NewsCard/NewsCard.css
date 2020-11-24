@@ -80,6 +80,10 @@
   display: block;
 }
 
+.article__message_none {
+  display: none;
+}
+
 .article__button {
   background: none;
   background-repeat: no-repeat;
@@ -98,7 +102,7 @@
   background-image: url('../../images/icon/flag-hover.svg');
 }
 
-.article__button-save:focus  {
+.article__button-save-news {
   background-image: url('../../images/icon/flag-save.svg');
 }
 

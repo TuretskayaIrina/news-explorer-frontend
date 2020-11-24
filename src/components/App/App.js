@@ -32,6 +32,7 @@ function App() {
   const [preloader, setPreloader] = React.useState(false);
 
 
+
   const history = useHistory();
 
   // проверить токен в локальном хранилище при монтировании App
@@ -199,6 +200,8 @@ function App() {
     setBurger(true);
   }
 
+
+
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -216,6 +219,8 @@ function App() {
             <Main
               showNews={showNews}
               articles={articles}
+              loggedIn={loggedIn}
+
             />
             <NotFound
               handleNotFound={notFound}

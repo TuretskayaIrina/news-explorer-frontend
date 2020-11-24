@@ -4,7 +4,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCard from '../NewsCard/NewsCard';
 import saveArticles from '../../data/saveArticles';
 
-function SavedNews() {
+function SavedNews({ loggedIn }) {
 
     return(
       <section className="saved-news">
@@ -13,7 +13,7 @@ function SavedNews() {
           <div className="saved-news__container">
 
             {<div className="articles">
-            {saveArticles.map((article) => <NewsCard key={article._id} article={article}/>)}
+            {saveArticles.map((article) => <NewsCard key={article._id} article={article} loggedIn={loggedIn} />)}
             </div>}
 
           </div>

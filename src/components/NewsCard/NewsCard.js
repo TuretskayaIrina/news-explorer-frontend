@@ -8,11 +8,15 @@ function NewsCard(props) {
   // тут нужно что-то сделать с логикой сохранения карточек и всплывающей подсказкой
   // в зависимости от ширины экрана и состояния залогинен/не залогинен
 
+  const [click, setClick] = React.useState(false);
+
   const { pathname } = useLocation();
 
   const categoryNone = `${pathname === '/' ? 'article__category_none' : ''}`;
-  const articleButtonImg = `${pathname === '/' ? 'article__button-save' : 'article__button-delete'}`;
+  const articleButtonImg = `${pathname === '/' ? 'article__button article__button-save' : 'article__button article__button-delete'}`;
+  const articleButtonImgSave = `${pathname === '/' ? 'article__button article__button-save-news' : ''}`;
   const articleMessage = `${pathname === '/' ? 'Войдите, чтобы сохранять статьи' : 'Убрать из сохранённых'}`;
+  const articleMessageClass = `${pathname === '/' && props.loggedIn ? 'article__message_none' : 'article__message' }`;
 
   function handleDate(date) {
     // формат даты для записи в карточку
@@ -35,6 +39,9 @@ function NewsCard(props) {
     return formatDate;
   }
 
+  function handlerClick() {
+    !click ? setClick(true) : setClick(false);
+  }
 
     return(
       <div className="article">
@@ -44,8 +51,8 @@ function NewsCard(props) {
           </div>
 
           <div className="article__icons-message">
-            <p className="article__message">{articleMessage}</p>
-            <button className={`article__button ${articleButtonImg}`} type="button" />
+            <p className={articleMessageClass}>{articleMessage}</p>
+            <button className={click && props.loggedIn ? `${articleButtonImgSave}` : `${articleButtonImg}`} onClick={handlerClick} type="button" />
           </div>
         </div>
 
@@ -61,7 +68,7 @@ function NewsCard(props) {
             </div>
 
             <div className="article__source-container">
-            <p className="article__source">{props.article.source.name}</p>
+            {/* <p className="article__source">{props.article.source.name}</p> */}
             </div>
           </div>
         </a>
