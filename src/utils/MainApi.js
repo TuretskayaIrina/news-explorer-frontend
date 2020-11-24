@@ -1,11 +1,4 @@
-// // проверяет переданные в теле почту и пароль
-// router.post('/signin', validateSignin, login);
 
-// // создаёт пользователя с переданными в теле email, password и name
-// router.post('/signup', validateSignup, createUser);
-
-// // вернуть информацию о пользователе (email и имя)
-// usersRouter.get('/me', getUser);
 
 // // возвращает все сохранённые пользователем статьи
 // articlesRouter.get('/', getAllArticles);
@@ -117,3 +110,43 @@ export const getContent = (token) => {
     })
     .catch((err) => {return Promise.reject(err.message)});
 }
+
+// сохранить новость
+export const saveNews = (article, keyword) => {
+  const {
+    title,
+    description,
+    publishedAt,
+    source,
+    url,
+    urlToImage,
+  } = article
+  return fetch(
+    `${authUrl}/articles`,
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+      },
+      body: JSON.stringify({
+        keyword: keyword,
+        title,
+        text: description,
+        date: publishedAt,
+        source: source.name,
+        link: url,
+        image: urlToImage
+      })
+    }
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {return Promise.reject(err.message)});
+}
+
+
+// удалить новость
+

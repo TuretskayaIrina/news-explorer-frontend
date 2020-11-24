@@ -41,13 +41,14 @@ function NewsCard(props) {
 
   function handlerClick() {
     !click ? setClick(true) : setClick(false);
+    props.handleSaveNews(props.article, props.keyword);
   }
 
     return(
       <div className="article">
         <div className="article__icons">
           <div className="article__icons-category">
-          <p className={`article__category ${categoryNone}`}>{props.article.category}</p>
+          <p className={`article__category ${categoryNone}`}>{props.article.keyword}</p>
           </div>
 
           <div className="article__icons-message">

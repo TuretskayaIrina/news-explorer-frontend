@@ -14,7 +14,7 @@ import PopupRegister from '../PopupRegister/PopupRegister';
 import PopupSuccessful from '../PopupSuccessful/PopupSuccessful';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import * as auth from '../../utils/MainApi';
+import * as mainApi from '../../utils/MainApi';
 import * as news  from '../../utils/NewsApi'
 
 
@@ -23,11 +23,16 @@ function App() {
   const [isAuthPopupOpen, setAuthPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isSuccessfulPopupOpen, setSuccessfulPopupOpen] = React.useState(false);
+
   const [isBurger, setBurger] = React.useState(false);
+
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
+
   const [showNews, setShowNews] = React.useState(false);
   const [articles, setArticles] = React.useState([]);
+  const [keyword, setKeyword] = React.useState('');
+
   const [notFound, setNotFound] = React.useState(false);
   const [preloader, setPreloader] = React.useState(false);
 
@@ -84,7 +89,7 @@ function App() {
 
   // обработчик регистрации
   function handleRegister(email, password, name) {
-    return auth.register(email, password, name)
+    return mainApi.register(email, password, name)
       .then(() => {
         console.log('Зарегался');
         handleSuccessfulClick();
@@ -100,7 +105,7 @@ function App() {
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
-      auth.getContent(jwt)
+      mainApi.getContent(jwt)
         .then((res) => {
           if (res) {
             setCurrentUser({
@@ -118,7 +123,7 @@ function App() {
 
   // обработчик авторизации
   function handleAuth(email, password) {
-    return auth.authorize(email, password)
+    return mainApi.authorize(email, password)
       .then((res) => {
         if (res && res.token) {
           localStorage.setItem('jwt', res.token);
@@ -152,6 +157,8 @@ function App() {
         localStorage.setItem('articles', JSON.stringify(data.articles));
         setArticles(data.articles);
         console.log(data.articles);
+        setKeyword(keyword);
+        console.log(keyword);
         setNotFound(false);
 
         if (data.articles.length === 0) {
@@ -165,6 +172,15 @@ function App() {
       .finally(() => {
         setPreloader(false);
       });
+  }
+
+  // обработчик сохранения новости
+  function handleSaveNews(article, keyword) {
+    console.log('save news');
+    return mainApi.saveNews(article, keyword)
+      .then((res) => {
+        console.log(res);
+      })
   }
 
   // закрыть на Esc
@@ -200,8 +216,6 @@ function App() {
     setBurger(true);
   }
 
-
-
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -220,7 +234,8 @@ function App() {
               showNews={showNews}
               articles={articles}
               loggedIn={loggedIn}
-
+              handleSaveNews={handleSaveNews}
+              keyword={keyword}
             />
             <NotFound
               handleNotFound={notFound}

@@ -2,7 +2,7 @@ import './NewsCardList.css';
 import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList({ articles, showNews, loggedIn }) {
+function NewsCardList({ articles, showNews, loggedIn, handleSaveNews, keyword }) {
 
   const [newArticles, setNewArticles] = React.useState([]);
   const [showBth, setShowBth] = React.useState(false)
@@ -29,7 +29,7 @@ function NewsCardList({ articles, showNews, loggedIn }) {
         <h2 className="news__title">Результаты поиска</h2>
 
         <div className="articles">
-          {newArticles.map((article, key) => (<NewsCard key={key} article={article} loggedIn={loggedIn} />))}
+          {newArticles.map((article, key) => (<NewsCard key={key} keyword={keyword} article={article} loggedIn={loggedIn} handleSaveNews={handleSaveNews}/>))}
         </div>
 
         <button className={`news__bth ${showBth ? '' : 'news__bth_none'}`} onClick={handlerClick}>Показать еще</button>
