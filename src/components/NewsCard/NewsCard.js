@@ -40,12 +40,17 @@ function NewsCard(props) {
   }
 
   function handlerClick() {
-    !click ? setClick(true) : setClick(false);
-    props.handleSaveNews(props.article, props.keyword);
+    if(!click) {
+      setClick(true);
+      props.handleSaveNews(props.article, props.keyword);
+    } else {
+      setClick(false);
+      props.handleDeleteNews();
+    }
   }
 
     return(
-      <div className="article">
+      <div className="article" >
         <div className="article__icons">
           <div className="article__icons-category">
           <p className={`article__category ${categoryNone}`}>{props.article.keyword}</p>
@@ -57,19 +62,19 @@ function NewsCard(props) {
           </div>
         </div>
 
-        <a className="article__link" href={props.article.sourse} key={props.key} target="_blank" rel="noreferrer">
-          <img alt={props.article.title} className="article__img" src={props.article.urlToImage || plug} />
+        <a className="article__link" href={props.article.url || props.article.link} key={props.article._id} target="_blank" rel="noreferrer">
+          <img alt={props.article.title} className="article__img" src={props.article.urlToImage || props.article.image || plug} />
 
           <div className="article__about">
             <div className="article__about-container">
-              <p className="article__date">{handleDate (props.article.publishedAt)}</p>
+              <p className="article__date">{handleDate (props.article.publishedAt || props.article.date)}</p>
               <h3 className="article__name">{props.article.title}</h3>
-              <p className="article__description">{props.article.description}
+              <p className="article__description">{props.article.description || props.article.text}
               </p>
             </div>
 
             <div className="article__source-container">
-            {/* <p className="article__source">{props.article.source.name}</p> */}
+            <p className="article__source">{props.article.source.name || props.article.source}</p>
             </div>
           </div>
         </a>

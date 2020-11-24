@@ -2,9 +2,8 @@ import './SavedNews.css'
 import React from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCard from '../NewsCard/NewsCard';
-import saveArticles from '../../data/saveArticles';
 
-function SavedNews({ loggedIn }) {
+function SavedNews({ loggedIn, myNews, keyword, handleSaveNews, handleDeleteNews }) {
 
     return(
       <section className="saved-news">
@@ -12,9 +11,9 @@ function SavedNews({ loggedIn }) {
         <div className="saved-news__background">
           <div className="saved-news__container">
 
-            {<div className="articles">
-            {saveArticles.map((article) => <NewsCard key={article._id} article={article} loggedIn={loggedIn} />)}
-            </div>}
+            <div className="articles">
+              {myNews.map((article) => (<NewsCard key={article._id} keyword={keyword} article={article} loggedIn={loggedIn} handleSaveNews={handleSaveNews} handleDeleteNews={handleDeleteNews}/>))}
+            </div>
 
           </div>
         </div>

@@ -111,6 +111,25 @@ export const getContent = (token) => {
     .catch((err) => {return Promise.reject(err.message)});
 }
 
+// получить все сохраненные новости
+export const getAllArticles = () => {
+  return fetch(
+    `${authUrl}/articles`,
+    {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+      },
+    }
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {return Promise.reject(err.message)});
+}
+
 // сохранить новость
 export const saveNews = (article, keyword) => {
   const {
@@ -149,4 +168,20 @@ export const saveNews = (article, keyword) => {
 
 
 // удалить новость
-
+export const deleteNews = (article) => {
+  return fetch(
+    `${authUrl}/articles/${article._id}`,
+    {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+      },
+    }
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {return Promise.reject(err.message)});
+}

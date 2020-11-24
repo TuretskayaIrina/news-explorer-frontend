@@ -29,6 +29,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
 
+  const [myNews, setMyNews] = React.useState([]);
   const [showNews, setShowNews] = React.useState(false);
   const [articles, setArticles] = React.useState([]);
   const [keyword, setKeyword] = React.useState('');
@@ -45,6 +46,20 @@ function App() {
     tokenCheck();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // залогиниться и получить сохраненные новости
+  React.useEffect(() => {
+    if (loggedIn){
+      return mainApi.getAllArticles()
+        .then((news) => {
+          setMyNews(news);
+          console.log(news);
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+    }
+  }, [loggedIn]);
 
   // открыть попап авторизации
   function handleAuthClick() {
@@ -129,7 +144,7 @@ function App() {
           localStorage.setItem('jwt', res.token);
           tokenCheck();
           console.log('авторизовался');
-          closeAllPopups()
+          closeAllPopups();
           history.push('/saved-news');
         }
       })
@@ -139,7 +154,6 @@ function App() {
   }
 
   // разлогиниться
-  // тут нужно будет удалять новости из localStorage
   function handleLogout() {
     localStorage.removeItem('jwt');
     history.push('/');
@@ -178,6 +192,15 @@ function App() {
   function handleSaveNews(article, keyword) {
     console.log('save news');
     return mainApi.saveNews(article, keyword)
+      .then((res) => {
+        console.log(res);
+      })
+  }
+
+  // обработчик удаления новости
+  function handleDeleteNews(article) {
+    console.log('delete');
+    return mainApi.deleteNews(article)
       .then((res) => {
         console.log(res);
       })
@@ -235,6 +258,7 @@ function App() {
               articles={articles}
               loggedIn={loggedIn}
               handleSaveNews={handleSaveNews}
+              handleDeleteNews={handleDeleteNews}
               keyword={keyword}
             />
             <NotFound
@@ -250,6 +274,10 @@ function App() {
             path="/saved-news"
             loggedIn={loggedIn}
             component={SavedNews}
+            myNews={myNews}
+            handleSaveNews={handleSaveNews}
+            handleDeleteNews={handleDeleteNews}
+            keyword={keyword}
           />
 
           <Route>
