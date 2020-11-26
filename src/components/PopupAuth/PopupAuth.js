@@ -3,15 +3,7 @@ import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import FormValidator from '../../hooks/FormValidator';
 
-function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
-
-  // это будет валидироваться статусами ответа от api
-  // или выводить кастомное сообщение ошибки api, которое будет писать celebrate/Joi?
-  // возможно использовать для вывода ошибок под инпутами
-  // понятно будет после подключения api
-  // а еще куда-то выводить "Неверная почта или пароль"
-  // возможно над кнопкой "Войти" или добавить попап с ошибкой входа?
-  // const [message, setMessage] = React.useState('Такой пользователь уже есть');
+function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup, message }) {
 
   const {values, handleChange, errors, isValid, resetForm} = FormValidator();
   React.useEffect(() => {
@@ -66,6 +58,8 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup }) {
         />
 
         <span id="password-error" className="popup__input-error" >{errors.password || ''}</span>
+
+        <span id="auth-error" className="popup__input-error popup__register-error">{message}</span>
 
         <button className={`popup__button-save ${isValid ? 'popup__button-save_active' : 'popup__button-save_disabled'}`}  type="submit" disabled={!isValid}>Войти</button>
       </>

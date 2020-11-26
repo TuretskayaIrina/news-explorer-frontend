@@ -23,6 +23,7 @@ function App() {
   const [isAuthPopupOpen, setAuthPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isSuccessfulPopupOpen, setSuccessfulPopupOpen] = React.useState(false);
+  const [message, setMessage] = React.useState('');
 
   const [isBurger, setBurger] = React.useState(false);
 
@@ -74,20 +75,22 @@ function App() {
         setMyNews(news);
         console.log(news)
         })
-        .catch((err) => {
-          console.log(err)
-        });
+      .catch((err) => {
+        console.log(err)
+      });
     }
   }, [loggedIn]);
 
   // открыть попап авторизации
   function handleAuthClick() {
     setAuthPopupOpen(true);
+    setMessage('');
   }
 
   // открыть попап авторизации
   function handleResisterClick() {
     setRegisterPopupOpen(true);
+    setMessage('');
   }
 
   // открыть попап успешной регистрации
@@ -102,10 +105,12 @@ function App() {
     if (isAuthPopupOpen) {
       handleResisterClick();
       setAuthPopupOpen(false);
+      setMessage('');
     }
     if (isRegisterPopupOpen) {
       handleAuthClick();
       setRegisterPopupOpen(false);
+      setMessage();
     }
     if (isSuccessfulPopupOpen) {
       handleAuthClick();
@@ -119,6 +124,7 @@ function App() {
     setAuthPopupOpen(false);
     setRegisterPopupOpen(false);
     setSuccessfulPopupOpen(false);
+    setMessage('');
   }
 
   // закрыть на Esc
@@ -155,11 +161,18 @@ function App() {
         setRegisterPopupOpen(false);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.status === 400) {
+          setMessage('Пороль должен быть без пробелов');
+        } else if (err.status === 409) {
+          setMessage('Пользователь с таким email уже зарегистрирован');
+        } else {
+          setMessage('Что-то пошло не так! Попробуйте ещё раз');
+        }
+      })
+      .finally(() => {
+        setMessage('');
       });
   }
-
-
 
   // обработчик авторизации
   function handleAuth(email, password) {
@@ -174,7 +187,16 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err)
+        if (err.status === 400) {
+          setMessage('Неправильные почта или пароль');
+        } else if (err.status === 401) {
+          setMessage('Неправильные почта или пароль');
+        } else {
+          setMessage('Что-то пошло не так! Попробуйте ещё раз');
+        }
+      })
+      .finally(() => {
+        setMessage('');
       });
   }
 
@@ -219,8 +241,7 @@ function App() {
       return mainApi.getAllArticles()
         .then((news) => {
           setMyNews(news);
-          console.log(news); // показывает все новости с id
-          console.log(news._id); // undefined
+          console.log(news);
         })
         .catch((err) => {
           console.log(err)
@@ -234,8 +255,7 @@ function App() {
     return mainApi.saveNews(article, keyword)
       .then((res) => {
         setMyNews(res);
-        console.log(res); // показывает все новости с id
-        console.log(res._id) // приходит id
+        console.log(res);
         getMySaveNews();
         console.log(res);
       })
@@ -316,6 +336,7 @@ function App() {
           onClose={closeAllPopups}
           onAuth={handleAuth}
           onClickPopup={handleChangePopup}
+          message={message}
         />
 
         <PopupRegister
@@ -323,6 +344,7 @@ function App() {
           onClose={closeAllPopups}
           onRegister={handleRegister}
           onClickPopup={handleChangePopup}
+          message={message}
         />
 
         <PopupSuccessful

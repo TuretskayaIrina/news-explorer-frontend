@@ -7,7 +7,7 @@ function SavedNews({ loggedIn, myNews, keyword, handleSaveNews, handleDeleteNews
 
     return(
       <section className="saved-news">
-        <SavedNewsHeader />
+        <SavedNewsHeader myNews={myNews} />
         <div className="saved-news__background">
           <div className="saved-news__container">
 

@@ -91,6 +91,17 @@
   transition: background-color .5s;
 }
 
+.search__input-error {
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 12px;
+  color: red;
+  text-shadow: 1px 1px 2px black, 0 0 1em red;
+  display: block;
+  margin: 10px auto 5px;
+  text-align: center;
+}
+
 @media screen and (max-width: 900px) {
   .search {
     padding: 104px 0 48px 0;
