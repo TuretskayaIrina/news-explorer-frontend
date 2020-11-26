@@ -43,6 +43,7 @@ function App() {
   // проверить валидность токена и получить данные пользователя
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
+    setArticles(JSON.parse(localStorage.getItem('articles')));
     if (jwt) {
       mainApi.getContent(jwt)
         .then((res) => {
@@ -57,7 +58,6 @@ function App() {
         .catch(err => {
           console.log(err);
         });
-      setArticles(JSON.parse(localStorage.getItem('articles')));
     }
   }
 
@@ -65,7 +65,7 @@ function App() {
   React.useEffect(() => {
     tokenCheck();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loggedIn]);
 
   // залогиниться и получить сохраненные новости
   React.useEffect(() => {
@@ -169,9 +169,6 @@ function App() {
           setMessage('Что-то пошло не так! Попробуйте ещё раз');
         }
       })
-      .finally(() => {
-        setMessage('');
-      });
   }
 
   // обработчик авторизации
@@ -188,16 +185,13 @@ function App() {
       })
       .catch((err) => {
         if (err.status === 400) {
-          setMessage('Неправильные почта или пароль');
+          setMessage('Неправильные почта или пароль')
         } else if (err.status === 401) {
-          setMessage('Неправильные почта или пароль');
+          setMessage('Неправильные почта или пароль')
         } else {
-          setMessage('Что-то пошло не так! Попробуйте ещё раз');
+          setMessage('Что-то пошло не так! Попробуйте ещё раз')
         }
       })
-      .finally(() => {
-        setMessage('');
-      });
   }
 
   // разлогиниться

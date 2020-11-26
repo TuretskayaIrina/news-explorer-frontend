@@ -141,7 +141,6 @@ export const saveNews = (article, keyword) => {
     .catch((err) => {return Promise.reject(err.message)});
 }
 
-
 // удалить новость
 export const deleteNews = (articleId) => {
   return fetch(
