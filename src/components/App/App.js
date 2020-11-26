@@ -51,9 +51,10 @@ function App() {
   React.useEffect(() => {
     if (loggedIn){
       return mainApi.getAllArticles()
-        .then((news) => {
-          setMyNews(news);
-          console.log(news);
+      .then((news) => {
+        setMyNews(news);
+        console.log(news)
+        console.log(news._id);
         })
         .catch((err) => {
           console.log(err)
@@ -188,22 +189,45 @@ function App() {
       });
   }
 
+  // получить сохраненные новости
+  function getMySaveNews() {
+    if (loggedIn){
+      return mainApi.getAllArticles()
+        .then((news) => {
+          setMyNews(news);
+          console.log(news); // показывает все новости с id
+          console.log(news._id); // undefined
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+    }
+  }
+
   // обработчик сохранения новости
   function handleSaveNews(article, keyword) {
     console.log('save news');
     return mainApi.saveNews(article, keyword)
       .then((res) => {
+        setMyNews(res);
+        console.log(res); // показывает все новости с id
+        console.log(res._id) // приходит id
+        getMySaveNews();
         console.log(res);
       })
   }
 
   // обработчик удаления новости
-  function handleDeleteNews(article) {
-    console.log('delete');
-    return mainApi.deleteNews(article)
-      .then((res) => {
-        console.log(res);
+  function handleDeleteNews(id) {
+    return mainApi.deleteNews(id)
+      .then(() => {
+        const arreyMyNews = myNews.filter((c) => (c._id !== id));
+        setMyNews(arreyMyNews);
+        console.log('delete');
       })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
 
   // закрыть на Esc

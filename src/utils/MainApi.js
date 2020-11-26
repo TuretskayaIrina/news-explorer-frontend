@@ -168,9 +168,9 @@ export const saveNews = (article, keyword) => {
 
 
 // удалить новость
-export const deleteNews = (article) => {
+export const deleteNews = (articleId) => {
   return fetch(
-    `${authUrl}/articles/${article._id}`,
+    `${authUrl}/articles/${articleId}`,
     {
       method: 'DELETE',
       headers: {

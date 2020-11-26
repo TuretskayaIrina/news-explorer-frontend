@@ -13,7 +13,10 @@ function NewsCard(props) {
   const { pathname } = useLocation();
 
   const categoryNone = `${pathname === '/' ? 'article__category_none' : ''}`;
+  // const articleButtonImg = `${pathname === '/' ? 'article__button article__button-save' : 'article__button article__button-delete'}`;
+
   const articleButtonImg = `${pathname === '/' ? 'article__button article__button-save' : 'article__button article__button-delete'}`;
+
   const articleButtonImgSave = `${pathname === '/' ? 'article__button article__button-save-news' : ''}`;
   const articleMessage = `${pathname === '/' ? 'Войдите, чтобы сохранять статьи' : 'Убрать из сохранённых'}`;
   const articleMessageClass = `${pathname === '/' && props.loggedIn ? 'article__message_none' : 'article__message' }`;
@@ -40,7 +43,7 @@ function NewsCard(props) {
   }
 
   function handlerClick() {
-    if(!click) {
+    if(!click && pathname === '/' ) {
       setClick(true);
       props.handleSaveNews(props.article, props.keyword);
     } else {
@@ -58,11 +61,14 @@ function NewsCard(props) {
 
           <div className="article__icons-message">
             <p className={articleMessageClass}>{articleMessage}</p>
+            {/* <button className={click && props.loggedIn ? `${articleButtonImgSave}` : `${articleButtonImg}`} onClick={handlerClick} type="button" /> */}
             <button className={click && props.loggedIn ? `${articleButtonImgSave}` : `${articleButtonImg}`} onClick={handlerClick} type="button" />
+            {/* <button className="article__button article__button-delete" onClick={handlerClick} type="button" /> */}
+
           </div>
         </div>
 
-        <a className="article__link" href={props.article.url || props.article.link} key={props.article._id} target="_blank" rel="noreferrer">
+        <a className="article__link" href={props.article.url || props.article.link} target="_blank" rel="noreferrer">
           <img alt={props.article.title} className="article__img" src={props.article.urlToImage || props.article.image || plug} />
 
           <div className="article__about">
