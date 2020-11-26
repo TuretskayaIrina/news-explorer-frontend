@@ -29,7 +29,17 @@ function NewsCardList({ articles, showNews, loggedIn, handleSaveNews, handleDele
         <h2 className="news__title">Результаты поиска</h2>
 
         <div className="articles">
-          {newArticles.map((article, key) => (<NewsCard key={key} keyword={keyword} article={article} loggedIn={loggedIn} handleSaveNews={handleSaveNews} handleDeleteNews={()=>handleDeleteNews(article._id)}/>))}
+          {
+            newArticles.map((article, key) => (
+            <NewsCard
+              key={key}
+              keyword={keyword}
+              article={article}
+              loggedIn={loggedIn}
+              handleSaveNews={handleSaveNews}
+              handleDeleteNews={()=>handleDeleteNews(article._id)}
+            />))
+          }
         </div>
 
         <button className={`news__bth ${showBth ? '' : 'news__bth_none'}`} onClick={handlerClick}>Показать еще</button>

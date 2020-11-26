@@ -37,9 +37,28 @@ function App() {
   const [notFound, setNotFound] = React.useState(false);
   const [preloader, setPreloader] = React.useState(false);
 
-
-
   const history = useHistory();
+
+  // проверить валидность токена и получить данные пользователя
+  function tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      mainApi.getContent(jwt)
+        .then((res) => {
+          if (res) {
+            setCurrentUser({
+              name: res.name
+            });
+            console.log(res.name);
+            setLoggedIn(true);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      setArticles(JSON.parse(localStorage.getItem('articles')));
+    }
+  }
 
   // проверить токен в локальном хранилище при монтировании App
   React.useEffect(() => {
@@ -54,7 +73,6 @@ function App() {
       .then((news) => {
         setMyNews(news);
         console.log(news)
-        console.log(news._id);
         })
         .catch((err) => {
           console.log(err)
@@ -103,6 +121,31 @@ function App() {
     setSuccessfulPopupOpen(false);
   }
 
+  // закрыть на Esc
+  function handleEscClose(evt) {
+    if (evt.key === 'Escape') {
+      closeAllPopups();
+    }
+  }
+
+  // закрыть на overlay
+  function handleOverlayClose(evt) {
+    if (evt.target.classList.contains('popup')) {
+      closeAllPopups();
+    }
+  }
+
+  // слушатели для закрытия на esc и overlay
+  React.useEffect(() => {
+    window.addEventListener('keydown', handleEscClose);
+    window.addEventListener('mousedown', handleOverlayClose);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscClose);
+      window.removeEventListener('mousedown', handleOverlayClose);
+    };
+  })
+
   // обработчик регистрации
   function handleRegister(email, password, name) {
     return mainApi.register(email, password, name)
@@ -116,26 +159,7 @@ function App() {
       });
   }
 
-  // проверить валидность токена и получить данные пользователя
-  // использовать в шапке?
-  function tokenCheck() {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      mainApi.getContent(jwt)
-        .then((res) => {
-          if (res) {
-            setCurrentUser({
-              name: res.name
-            });
-            console.log(res.name);
-            setLoggedIn(true);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  }
+
 
   // обработчик авторизации
   function handleAuth(email, password) {
@@ -229,31 +253,6 @@ function App() {
         console.log(err.message);
       });
   }
-
-  // закрыть на Esc
-  function handleEscClose(evt) {
-    if (evt.key === 'Escape') {
-      closeAllPopups();
-    }
-  }
-
-  // закрыть на overlay
-  function handleOverlayClose(evt) {
-    if (evt.target.classList.contains('popup')) {
-      closeAllPopups();
-    }
-  }
-
-  // слушатели для закрытия на esc и overlay
-  React.useEffect(() => {
-    window.addEventListener('keydown', handleEscClose);
-    window.addEventListener('mousedown', handleOverlayClose);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscClose);
-      window.removeEventListener('mousedown', handleOverlayClose);
-    };
-  })
 
   // красим шапку меню
   // нужно что-то менять...
