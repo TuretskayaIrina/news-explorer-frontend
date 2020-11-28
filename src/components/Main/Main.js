@@ -2,7 +2,7 @@ import './Main.css';
 import React from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 
-function Main({ articles, showNews, showBth, loggedIn, handleSaveNews, handleDeleteNews, keyword }) {
+function Main({ articles, showNews, showBth, loggedIn, keyword, handleAuthClick, findMySevedNews, mySavedNews, saved, setSaved }) {
 
     return(
       <main className="main">
@@ -10,9 +10,12 @@ function Main({ articles, showNews, showBth, loggedIn, handleSaveNews, handleDel
           showNews={showNews}
           showBth={showBth} articles={articles}
           loggedIn={loggedIn}
-          handleSaveNews={handleSaveNews}
-          handleDeleteNews={handleDeleteNews}
           keyword={keyword}
+          handleAuthClick={handleAuthClick}
+          findMySevedNews={findMySevedNews}
+          mySavedNews={mySavedNews}
+          saved={saved}
+          setSaved={setSaved}
         />
       </main>
     );

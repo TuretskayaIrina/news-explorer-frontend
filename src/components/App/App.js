@@ -34,6 +34,7 @@ function App() {
   const [showNews, setShowNews] = React.useState(false);
   const [articles, setArticles] = React.useState([]);
   const [keyword, setKeyword] = React.useState('');
+  const [saved, setSaved] = React.useState(false);
 
   const [notFound, setNotFound] = React.useState(false);
   const [preloader, setPreloader] = React.useState(false);
@@ -65,10 +66,11 @@ function App() {
   React.useEffect(() => {
     tokenCheck();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn]);
+  }, []);
 
   // залогиниться и получить сохраненные новости
   React.useEffect(() => {
+    setArticles(JSON.parse(localStorage.getItem('articles')));
     if (loggedIn){
       return mainApi.getAllArticles()
       .then((news) => {
@@ -248,8 +250,6 @@ function App() {
     console.log('save news');
     return mainApi.saveNews(article, keyword)
       .then((res) => {
-        setMyNews(res);
-        console.log(res);
         getMySaveNews();
         console.log(res);
       })
@@ -266,6 +266,27 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       });
+  }
+
+  // проверяем есть ли новость в сохраненках
+  function findMySevedNews(article, keyword, myArticle) {
+
+    const mySavedArticle = myNews.find((c) => {
+      if (myArticle) {
+      return c.title === myArticle.title && c.text === myArticle.text;
+      }
+
+      if (article) {
+        return c.title === article.title && c.text === article.description;
+      }
+
+    });
+
+    if (mySavedArticle) {
+      handleDeleteNews(mySavedArticle._id);
+    } else {
+      handleSaveNews(article, keyword);
+    }
   }
 
   // красим шапку меню
@@ -294,9 +315,12 @@ function App() {
               showNews={showNews}
               articles={articles}
               loggedIn={loggedIn}
-              handleSaveNews={handleSaveNews}
-              handleDeleteNews={handleDeleteNews}
               keyword={keyword}
+              handleAuthClick={handleAuthClick}
+              findMySevedNews={findMySevedNews}
+              mySavedNews={myNews}
+              saved={saved}
+              setSaved={setSaved}
             />
             <NotFound
               handleNotFound={notFound}
@@ -312,9 +336,8 @@ function App() {
             loggedIn={loggedIn}
             component={SavedNews}
             myNews={myNews}
-            handleSaveNews={handleSaveNews}
-            handleDeleteNews={handleDeleteNews}
             keyword={keyword}
+            findMySevedNews={findMySevedNews}
           />
 
           <Route>

@@ -2,7 +2,7 @@ import './NewsCardList.css';
 import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList({ articles, showNews, loggedIn, handleSaveNews, handleDeleteNews, keyword }) {
+function NewsCardList({ articles, showNews, loggedIn, keyword, handleAuthClick, findMySevedNews, mySavedNews, saved, setSaved }) {
 
   const [newArticles, setNewArticles] = React.useState([]);
   const [showBth, setShowBth] = React.useState(false)
@@ -33,11 +33,20 @@ function NewsCardList({ articles, showNews, loggedIn, handleSaveNews, handleDele
             newArticles.map((article, key) => (
             <NewsCard
               key={key}
-              keyword={keyword}
               article={article}
+              keyword={keyword}
+              title={article.title}
+              text={article.description}
+              date={article.publishedAt}
+              source={article.source.name}
+              link={article.url}
+              image={article.urlToImage}
+              mySavedNews={mySavedNews}
+              saved={saved}
+              setSaved={setSaved}
               loggedIn={loggedIn}
-              handleSaveNews={handleSaveNews}
-              handleDeleteNews={()=>handleDeleteNews(article._id)}
+              handleAuthClick={handleAuthClick}
+              findMySevedNews={findMySevedNews}
             />))
           }
         </div>

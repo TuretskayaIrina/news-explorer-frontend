@@ -3,7 +3,7 @@ import React from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCard from '../NewsCard/NewsCard';
 
-function SavedNews({ loggedIn, myNews, keyword, handleSaveNews, handleDeleteNews }) {
+function SavedNews({ loggedIn, myNews, findMySevedNews }) {
 
     return(
       <section className="saved-news">
@@ -16,11 +16,16 @@ function SavedNews({ loggedIn, myNews, keyword, handleSaveNews, handleDeleteNews
                 myNews.map((article, key) => (
                 <NewsCard
                   key={key}
-                  keyword={keyword}
-                  article={article}
+                  keyword={article.keyword}
+                  myArticle={article}
+                  title={article.title}
+                  text={article.text}
+                  date={article.date}
+                  source={article.source}
+                  link={article.link}
+                  image={article.image}
                   loggedIn={loggedIn}
-                  handleSaveNews={handleSaveNews}
-                  handleDeleteNews={()=>handleDeleteNews(article._id)}
+                  findMySevedNews={findMySevedNews}
                 />))
               }
             </div>
