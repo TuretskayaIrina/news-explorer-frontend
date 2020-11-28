@@ -71,8 +71,7 @@ function NewsCard(props) {
             <div className="article__about-container">
               <p className="article__date">{handleDate (props.date)}</p>
               <h3 className="article__name">{props.title}</h3>
-              <p className="article__description">{props.text}
-              </p>
+              <p className="article__description">{props.text || props.title}</p>
             </div>
 
             <div className="article__source-container">

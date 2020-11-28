@@ -127,7 +127,7 @@ export const saveNews = (article, keyword) => {
       body: JSON.stringify({
         keyword: keyword,
         title,
-        text: description,
+        text: description || title,
         date: publishedAt,
         source: source.name,
         link: url,
