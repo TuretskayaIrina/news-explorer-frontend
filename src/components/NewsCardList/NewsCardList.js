@@ -2,7 +2,7 @@ import './NewsCardList.css';
 import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList({ articles, showNews, loggedIn, keyword, handleAuthClick, findMySevedNews, mySavedNews, saved, setSaved }) {
+function NewsCardList({ articles, loggedIn, keyword, handleAuthClick, findMySevedNews, mySavedNews, saved, setSaved }) {
 
   const [newArticles, setNewArticles] = React.useState([]);
   const [showBth, setShowBth] = React.useState(false)
@@ -25,7 +25,7 @@ function NewsCardList({ articles, showNews, loggedIn, keyword, handleAuthClick, 
   }
 
     return(
-      <section className={`news ${showNews ? '' : 'news_none'}`}>
+      <section className={`news ${newArticles.length > 0 ? '' : 'news_none'}`}>
         <h2 className="news__title">Результаты поиска</h2>
 
         <div className="articles">

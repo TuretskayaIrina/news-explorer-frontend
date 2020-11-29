@@ -31,12 +31,12 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
 
   const [myNews, setMyNews] = React.useState([]);
-  const [showNews, setShowNews] = React.useState(false);
   const [articles, setArticles] = React.useState([]);
   const [keyword, setKeyword] = React.useState('');
   const [saved, setSaved] = React.useState(false);
 
   const [notFound, setNotFound] = React.useState(false);
+  const [serverError, setServerError] = React.useState(false);
   const [preloader, setPreloader] = React.useState(false);
 
   const history = useHistory();
@@ -44,7 +44,6 @@ function App() {
   // проверить валидность токена и получить данные пользователя
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
-    setArticles(JSON.parse(localStorage.getItem('articles')));
     if (jwt) {
       mainApi.getContent(jwt)
         .then((res) => {
@@ -62,15 +61,18 @@ function App() {
     }
   }
 
-  // проверить токен в локальном хранилище при монтировании App
+  // достать данные из localStorage при монтировании App
   React.useEffect(() => {
     tokenCheck();
+    setKeyword(localStorage.getItem('keyword'));
+    const articles = localStorage.getItem('articles') ? JSON.parse(localStorage.getItem('articles')) : [];
+    setArticles(articles);
+    console.log(articles);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // залогиниться и получить сохраненные новости
   React.useEffect(() => {
-    setArticles(JSON.parse(localStorage.getItem('articles')));
     if (loggedIn){
       return mainApi.getAllArticles()
       .then((news) => {
@@ -206,12 +208,16 @@ function App() {
 
   // обработчик поиска новостей
   function handleSerchNews(keyword) {
+    setArticles([]);
+    localStorage.removeItem('articles');
+    localStorage.removeItem('keyword');
     setPreloader(true);
     setNotFound(false);
+    setServerError(false);
     return news.getNews(keyword)
       .then((data) => {
-        setShowNews(true);
         localStorage.setItem('articles', JSON.stringify(data.articles));
+        localStorage.setItem('keyword', keyword);
         setArticles(data.articles);
         console.log(data.articles);
         setKeyword(keyword);
@@ -219,12 +225,12 @@ function App() {
         setNotFound(false);
 
         if (data.articles.length === 0) {
-          setShowNews(false);
           setNotFound(true);
         }
       })
       .catch((err) => {
         console.log(err);
+        setServerError(true);
       })
       .finally(() => {
         setPreloader(false);
@@ -271,6 +277,7 @@ function App() {
   // проверяем есть ли новость в сохраненках
   function findMySevedNews(article, keyword, myArticle) {
 
+    // eslint-disable-next-line array-callback-return
     const mySavedArticle = myNews.find((c) => {
       if (myArticle) {
       return c.title === myArticle.title && c.text === myArticle.text;
@@ -312,7 +319,6 @@ function App() {
           <Route exact path="/">
             <SearchForm serchNews={handleSerchNews}/>
             <Main
-              showNews={showNews}
               articles={articles}
               loggedIn={loggedIn}
               keyword={keyword}
@@ -324,6 +330,7 @@ function App() {
             />
             <NotFound
               handleNotFound={notFound}
+              serverError={serverError}
             />
             <Preloader
               handlePreloader={preloader}
