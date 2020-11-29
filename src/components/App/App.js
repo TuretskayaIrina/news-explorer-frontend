@@ -296,12 +296,33 @@ function App() {
     }
   }
 
-  // красим шапку меню
-  // нужно что-то менять...
-  // может красить в зависимости от скролла?
-  function handleClickBurger() {
-    console.log('checked');
-    setBurger(true);
+  // красим шапку меню в зависимости от скролла
+  function handlerScroll() {
+    document.addEventListener('scroll', () => {
+      if ((window.pageYOffset - 30) > 0) {
+        setBurger(true);
+      } else {
+        setBurger(false);
+      }
+    });
+  };
+
+  handlerScroll();
+
+  // красим шапку меню в зависимости от checked
+  function handleClickBurger(evt) {
+    let checked = evt.target.checked;
+    document.addEventListener('scroll', () => {
+      if ((window.pageYOffset - 30) > 0 && checked) {
+        setBurger(true);
+      } else if ((window.pageYOffset - 30) > 0 && !checked) {
+        setBurger(true);
+      } else if (window.pageYOffset < 0 && checked) {
+
+      } else {
+        setBurger(false);
+      }
+    });
   }
 
   return (
