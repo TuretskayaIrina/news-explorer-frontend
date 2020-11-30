@@ -21,9 +21,12 @@
 
 .article__img {
   width: 100%;
-  height: auto;
-  max-height: 272px;
+  height: 272px;
   object-fit: cover;
+  background-image: url('../../images/plug.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .article__icons {
@@ -77,6 +80,10 @@
   display: block;
 }
 
+.article__message_none {
+  display: none;
+}
+
 .article__button {
   background: none;
   background-repeat: no-repeat;
@@ -95,7 +102,7 @@
   background-image: url('../../images/icon/flag-hover.svg');
 }
 
-.article__button-save:focus  {
+.article__button-save-news {
   background-image: url('../../images/icon/flag-save.svg');
 }
 
@@ -209,7 +216,7 @@
   }
 
   .article__img {
-    max-height: 150px;
+    height: 150px;
   }
 
   .article__about {
@@ -245,7 +252,7 @@
   }
 
   .article__img {
-    max-height: 196px;
+    height: 196px;
   }
 
   .article__name {

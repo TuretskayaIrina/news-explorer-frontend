@@ -1,15 +1,21 @@
 import './Main.css';
 import React from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
-// import NotFound from '../NotFound/NotFound';
-// import Preloader from '../Preloader/Preloader';
 
-function Main() {
+function Main({ articles, showBth, loggedIn, keyword, handleAuthClick, findMySevedNews, mySavedNews, saved, setSaved }) {
     return(
       <main className="main">
-        <NewsCardList />
-        {/* <NotFound />
-        <Preloader /> */}
+        <NewsCardList
+          showBth={showBth}
+          articles={articles}
+          loggedIn={loggedIn}
+          keyword={keyword}
+          handleAuthClick={handleAuthClick}
+          findMySevedNews={findMySevedNews}
+          mySavedNews={mySavedNews}
+          saved={saved}
+          setSaved={setSaved}
+        />
       </main>
     );
 }

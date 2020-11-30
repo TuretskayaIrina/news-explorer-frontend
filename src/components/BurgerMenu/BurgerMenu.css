@@ -102,6 +102,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: space-between;
+    height: 190px;
     margin: 16px 16px 24px;
   }
 

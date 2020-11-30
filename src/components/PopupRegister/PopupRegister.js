@@ -3,16 +3,9 @@ import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import FormValidator from '../../hooks/FormValidator';
 
-function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
-  // нужно будет прикрутить паттерн на пароль
-  // и менять стандартное сообщение ошибки
-  // или выводить кастомное сообщение ошибки api, которое будет писать celebrate/Joi?
+function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup, message }) {
 
-  // это будет валидироваться статусами ответа от api
-  // возможно использовать для вывода ошибок под инпутами
-  // понятно будет после подключения api
-  const [message, setMessage] = React.useState('Такой пользователь уже есть');
-
+  // валидация формы
   const {values, handleChange, errors, isValid, resetForm} = FormValidator();
   React.useEffect(() => {
     resetForm();
@@ -21,8 +14,10 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
   // обработчик отправки регистрации
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('register');
-    onRegister();
+    if (!values.email || !values.password || !values.name) {
+      return;
+    }
+    onRegister(values.email, values.password, values.name);
   }
 
   return(
@@ -63,7 +58,7 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup }) {
           name="password"
           placeholder="Введите пароль"
           required
-          minLength="8"
+          minLength="10"
           maxLength="30"
         />
         <span id="password-error" className="popup__input-error" >{errors.password || ''}</span>

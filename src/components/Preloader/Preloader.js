@@ -1,9 +1,10 @@
 import './Preloader.css';
 import React from 'react';
 
-function Preloader() {
+function Preloader({ handlePreloader }) {
+
     return(
-      <section className="preloader">
+      <section className={`preloader ${handlePreloader? '' : 'preloader_none'}`}>
           <i className="preloader__circle"></i>
           <p  className="preloader__message">Идет поиск новостей...</p>
       </section>
