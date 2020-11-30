@@ -8,9 +8,6 @@ const startDate = now.toISOString().slice(0, 10);
 now.setDate(now.getDate() - 7);
 const finishDate = now.toISOString().slice(0, 10);
 
-console.log(startDate);
-console.log(finishDate);
-
 export const getNews = (keyword) => {
   return fetch(`${newsUrl}q=${keyword}&apiKey=${apiKey}&from=${finishDate}&to=${startDate}&sortBy=publishedAt&pageSize=100`, {
     method: 'GET',

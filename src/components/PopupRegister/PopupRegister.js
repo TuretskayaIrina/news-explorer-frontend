@@ -18,7 +18,6 @@ function PopupRegister({ isOpen,  onClose, onRegister, onClickPopup, message }) 
       return;
     }
     onRegister(values.email, values.password, values.name);
-    console.log('register');
   }
 
   return(

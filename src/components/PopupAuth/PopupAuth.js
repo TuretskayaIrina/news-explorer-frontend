@@ -16,7 +16,6 @@ function PopupAuth({ isOpen,  onClose, onAuth, onClickPopup, message }) {
     if (!values.email || !values.password) {
       return;
     }
-    console.log('working');
     onAuth(values.email, values.password);
   }
 

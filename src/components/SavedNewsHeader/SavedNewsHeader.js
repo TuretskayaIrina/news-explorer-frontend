@@ -9,7 +9,6 @@ function SavedNewsHeader({ myNews }) {
   // собираем массив уникальных ключевых слов
   const myArray = myNews.map(i => i = i.keyword);
   const keywordsArr = [...new Set(myArray)];
-  console.log(keywordsArr);
 
   // меняем текст в зависимости от количества стататей
   function handlerMainText(number) {

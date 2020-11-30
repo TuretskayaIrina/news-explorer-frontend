@@ -51,7 +51,6 @@ function App() {
             setCurrentUser({
               name: res.name
             });
-            console.log(res.name);
             setLoggedIn(true);
           }
         })
@@ -67,7 +66,6 @@ function App() {
     setKeyword(localStorage.getItem('keyword'));
     const articles = localStorage.getItem('articles') ? JSON.parse(localStorage.getItem('articles')) : [];
     setArticles(articles);
-    console.log(articles);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -77,7 +75,6 @@ function App() {
       return mainApi.getAllArticles()
       .then((news) => {
         setMyNews(news);
-        console.log(news)
         })
       .catch((err) => {
         console.log(err)
@@ -104,8 +101,6 @@ function App() {
 
   // обработчик переключения попапов
   function handleChangePopup() {
-    console.log('переключили');
-
     if (isAuthPopupOpen) {
       handleResisterClick();
       setAuthPopupOpen(false);
@@ -120,7 +115,6 @@ function App() {
       handleAuthClick();
       setSuccessfulPopupOpen(false);
     }
-
   }
 
   // закрытие всех попапов
@@ -160,7 +154,6 @@ function App() {
   function handleRegister(email, password, name) {
     return mainApi.register(email, password, name)
       .then(() => {
-        console.log('Зарегался');
         handleSuccessfulClick();
         setRegisterPopupOpen(false);
       })
@@ -182,7 +175,6 @@ function App() {
         if (res && res.token) {
           localStorage.setItem('jwt', res.token);
           tokenCheck();
-          console.log('авторизовался');
           closeAllPopups();
           history.push('/saved-news');
         }
@@ -203,7 +195,6 @@ function App() {
     localStorage.removeItem('jwt');
     history.push('/');
     setLoggedIn(false);
-    console.log('разлогинились');
   }
 
   // обработчик поиска новостей
@@ -219,9 +210,7 @@ function App() {
         localStorage.setItem('articles', JSON.stringify(data.articles));
         localStorage.setItem('keyword', keyword);
         setArticles(data.articles);
-        console.log(data.articles);
         setKeyword(keyword);
-        console.log(keyword);
         setNotFound(false);
 
         if (data.articles.length === 0) {
@@ -243,7 +232,6 @@ function App() {
       return mainApi.getAllArticles()
         .then((news) => {
           setMyNews(news);
-          console.log(news);
         })
         .catch((err) => {
           console.log(err)
@@ -253,7 +241,6 @@ function App() {
 
   // обработчик сохранения новости
   function handleSaveNews(article, keyword) {
-    console.log('save news');
     return mainApi.saveNews(article, keyword)
       .then((res) => {
         getMySaveNews();
@@ -267,7 +254,6 @@ function App() {
       .then(() => {
         const arreyMyNews = myNews.filter((c) => (c._id !== id));
         setMyNews(arreyMyNews);
-        console.log('delete');
       })
       .catch((err) => {
         console.log(err.message);
