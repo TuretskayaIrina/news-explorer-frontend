@@ -11,14 +11,14 @@ function Footer() {
         <p className="footer__author">© 2020. Яковлева Ирина</p>
 
         <div className="footer__navigation">
-          <ul className="footer__links">
+          {/* <ul className="footer__links">
             <li className="footer__links-item">
               <a className="footer__link" href="/">Главная</a>
             </li>
-            {/* <li className="footer__links-item">
+            <li className="footer__links-item">
               <a className="footer__link" href="https://praktikum.yandex.ru/" target="_blank" rel="noreferrer">Яндекс.Практикум</a>
-            </li> */}
-          </ul>
+            </li>
+          </ul> */}
 
           <ul className="footer__social">
             <li className="footer__social-link">

@@ -108,4 +108,8 @@
   .footer__links-item:last-of-type {
     padding-bottom: 0;
   }
+
+  .footer__navigation {
+    margin-bottom: 10px;
+  }
 }
