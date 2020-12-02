@@ -2,6 +2,7 @@ import './Footer.css';
 import React from 'react';
 import github from '../../images/social/github.svg';
 import telegram from '../../images/social/telegram.png';
+import mail from '../../images/social/mailto.png';
 
 function Footer() {
     return(
@@ -14,9 +15,9 @@ function Footer() {
             <li className="footer__links-item">
               <a className="footer__link" href="/">Главная</a>
             </li>
-            <li className="footer__links-item">
+            {/* <li className="footer__links-item">
               <a className="footer__link" href="https://praktikum.yandex.ru/" target="_blank" rel="noreferrer">Яндекс.Практикум</a>
-            </li>
+            </li> */}
           </ul>
 
           <ul className="footer__social">
@@ -28,6 +29,11 @@ function Footer() {
             <li className="footer__social-link">
               <a className="footer__social-link-item" href="https://t.me/Turetskaya_Irina" target="_blank" rel="noreferrer">
                 <img className="footer__social-link-img" alt="telegram" src={telegram}/>
+              </a>
+            </li>
+            <li className="footer__social-link">
+              <a className="footer__social-link-item" href="mailto:turetskaya30.07.1994@gmail.com" target="_blank" rel="noreferrer">
+                <img className="footer__social-link-img" alt="mail" src={mail}/>
               </a>
             </li>
           </ul>
