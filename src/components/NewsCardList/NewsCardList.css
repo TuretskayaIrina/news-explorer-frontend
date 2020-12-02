@@ -43,7 +43,8 @@
 
 @media screen and (max-width: 1312px) {
   .news {
-    margin: 0 40px;
+    margin: 0 auto;
+    max-width: 688px;
   }
 }
 
@@ -64,8 +65,8 @@
 
 @media screen and (max-width: 750px) {
   .news {
-    padding: 32px 0;
-    margin: 0 16px;
+    margin: 0 auto;
+    padding: 32px 16px;
   }
 
   .news__bth {
