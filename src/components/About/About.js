@@ -1,20 +1,19 @@
 import './About.css';
 import React from 'react';
-import avatar from '../../images/avatar.jpg';
 
 function About() {
     return(
       <section className="about">
-        <img className="about__avatar" alt="avatar" src={avatar}></img>
+        <div className="about__avatar" />
         <div className="about__author">
-          <h2 className="about__author-title">Об авторе</h2>
+          <h2 className="about__author-title">Info</h2>
           <p className="about__author-description">
-            Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь,
-            какими технологиями разработки владеете.
+            Меня зовут Ирина, и перед вами мой проект News&nbsp;Explorer.
+            News&nbsp;Explorer - это сервис, где вы можете найти новости по ключевому слову и сохранить их в личном кабинете.
           </p>
           <p className="about__author-description">
-            Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились,
-            и чем можете помочь потенциальным заказчикам.
+            Другие мои проекты вы можете посмотреть на github.
+            По вопросам сотрудничества, пишите в telegram.
           </p>
         </div>
       </section>

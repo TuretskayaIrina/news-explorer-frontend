@@ -49,7 +49,8 @@ function App() {
         .then((res) => {
           if (res) {
             setCurrentUser({
-              name: res.name
+              id: res.data._id,
+              name: res.data.name,
             });
             setLoggedIn(true);
           }
@@ -73,14 +74,15 @@ function App() {
   React.useEffect(() => {
     if (loggedIn){
       return mainApi.getAllArticles()
-      .then((news) => {
-        setMyNews(news);
-        })
-      .catch((err) => {
-        console.log(err)
-      });
+        .then((news) => {
+          const arreyMyNews = news.filter((c) => (c.owner === currentUser.id));
+          setMyNews(arreyMyNews);
+          })
+        .catch((err) => {
+          console.log(err)
+        });
     }
-  }, [loggedIn]);
+  }, [currentUser.id, loggedIn]);
 
   // открыть попап авторизации
   function handleAuthClick() {
@@ -231,7 +233,8 @@ function App() {
     if (loggedIn){
       return mainApi.getAllArticles()
         .then((news) => {
-          setMyNews(news);
+          const arreyMyNews = news.filter((c) => (c.owner === currentUser.id));
+          setMyNews(arreyMyNews);
         })
         .catch((err) => {
           console.log(err)

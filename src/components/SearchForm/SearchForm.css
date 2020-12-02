@@ -158,10 +158,12 @@
   .search__input {
     margin-bottom: 16px;
     padding: 17px 16px;
+    outline: none;
   }
 
   .search__bth {
     position: relative;
     justify-content: center;
+    outline: none;
   }
 }

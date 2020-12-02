@@ -1,7 +1,7 @@
 import './Footer.css';
 import React from 'react';
 import github from '../../images/social/github.svg';
-import facebook from '../../images/social/facebook.svg';
+import telegram from '../../images/social/telegram.png';
 
 function Footer() {
     return(
@@ -26,8 +26,8 @@ function Footer() {
               </a>
             </li>
             <li className="footer__social-link">
-              <a className="footer__social-link-item" href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-                <img className="footer__social-link-img" alt="facebook" src={facebook}/>
+              <a className="footer__social-link-item" href="https://t.me/Turetskaya_Irina" target="_blank" rel="noreferrer">
+                <img className="footer__social-link-img" alt="telegram" src={telegram}/>
               </a>
             </li>
           </ul>

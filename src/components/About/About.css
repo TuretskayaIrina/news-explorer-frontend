@@ -6,10 +6,13 @@
 }
 
 .about__avatar {
-  width: 464px;
-  height: 464px;
+  min-width: 464px;
+  min-height: 464px;
   border-radius: 50%;
   margin-right: 56px;
+  background-image: url('../../images/avatar-1.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .about__author {
@@ -46,8 +49,8 @@
   }
 
   .about__avatar {
-    width: 232px;
-    height: 232px;
+    min-width: 232px;
+    min-height: 232px;
     margin: 20px 32px 0 0;
   }
 
@@ -65,7 +68,7 @@
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 750px) {
   .about {
     padding: 32px 0 80px;
     margin: 0 16px;
@@ -74,8 +77,8 @@
   }
 
   .about__avatar {
-    width: 272px;
-    height: 272px;
+    min-width: 272px;
+    min-height: 272px;
     margin: 0 0 24px 0;
   }
 

@@ -108,6 +108,7 @@ export const getAllArticles = () => {
 // сохранить новость
 export const saveNews = (article, keyword) => {
   const {
+    owner,
     title,
     description,
     publishedAt,
@@ -125,6 +126,7 @@ export const saveNews = (article, keyword) => {
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
       },
       body: JSON.stringify({
+        owner,
         keyword: keyword,
         title,
         text: description || title,

@@ -180,7 +180,7 @@
 
 @media screen and (max-width: 1312px) {
   .articles {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit,minmax(0, 1fr));
     gap: 8px;
   }
 }
@@ -230,7 +230,7 @@
   }
 }
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 600px){
   .articles {
     grid-template-columns: repeat(auto-fit,minmax(0,288px));
     padding: 24px 0 15px;
