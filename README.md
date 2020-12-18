@@ -49,4 +49,4 @@ ___
 ### Deploy
 ___
 
-[Register and repost, please =)](https://avocado.students.nomoreparties.xyz/)
+[Register and repost, please =)](https://whathappend.students.nomoreparties.xyz/)

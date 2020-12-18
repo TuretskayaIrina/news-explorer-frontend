@@ -1,5 +1,5 @@
 // для деплоя
-export const authUrl = 'https://www.api.avocado.students.nomoreparties.xyz';
+export const authUrl = 'https://www.api.whathappend.students.nomoreparties.xyz';
 
 // для локальной работы
 // export const authUrl = 'http://localhost:3000';
